@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <!-- 视口总结 网页的宽高和电脑不自适应
+        电脑网页总结：
+        1.笔记本大多数默认的逻辑分辨率是1920*1080 
+          电脑网页的显示是根据逻辑分辨率来适应宽高的
+        2.网页的内容分是自定义的分辨率大小
+        手机端网页总结：
+        1.默认情况下手机网页的宽度是980
+        2.网页的内容是自定义分辨率的大小
+          如果给的图片的大小是逻辑分辨率的大小在放大情况下会显示的模糊
+        电脑分辨率：
+        缩放不会改变分辨率 但是浏览器仍旧会自适应宽高
+        在不缩放的情况下电脑的宽度 是逻辑分辨率的宽度
+        改变的电脑的逻辑分辨率是在原物理分辨率下放大了像素，在自适应下会有黑边
+        手机分辨率：
+        手机的逻辑分辨率和原物理分辨率成比例 
+    -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        @media ( width: calc(1920px/1.25)) {
+            html {
+                font-size: 37.5px;
+            }
+        }
+        /* html {
+            font-size: 37.5px;
+        } */
+        
+        .box {
+            width: 10rem;
+            height: 5rem;
+            background-color: pink;
+            margin: 100px auto;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="box">
+
+    </div>
+</body>
+
+</html>

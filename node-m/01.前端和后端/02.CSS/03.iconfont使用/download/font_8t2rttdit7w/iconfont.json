@@ -1,0 +1,72 @@
+{
+  "id": "",
+  "name": "",
+  "font_family": "iconfont",
+  "css_prefix_text": "icon-",
+  "description": "",
+  "glyphs": [
+    {
+      "icon_id": "23540780",
+      "name": "蚂蚁",
+      "font_class": "mayi",
+      "unicode": "e86e",
+      "unicode_decimal": 59502
+    },
+    {
+      "icon_id": "23542803",
+      "name": "蜜蜂",
+      "font_class": "mifeng",
+      "unicode": "e86f",
+      "unicode_decimal": 59503
+    },
+    {
+      "icon_id": "23544190",
+      "name": "虎甲虫",
+      "font_class": "hujiachong",
+      "unicode": "e870",
+      "unicode_decimal": 59504
+    },
+    {
+      "icon_id": "23548344",
+      "name": "扑了蛾",
+      "font_class": "pulee",
+      "unicode": "e871",
+      "unicode_decimal": 59505
+    },
+    {
+      "icon_id": "23548996",
+      "name": "毛毛虫",
+      "font_class": "maomaochong",
+      "unicode": "e872",
+      "unicode_decimal": 59506
+    },
+    {
+      "icon_id": "23552448",
+      "name": "蚊子",
+      "font_class": "wenzi",
+      "unicode": "e873",
+      "unicode_decimal": 59507
+    },
+    {
+      "icon_id": "23554743",
+      "name": "蜻蜓",
+      "font_class": "qingting",
+      "unicode": "e875",
+      "unicode_decimal": 59509
+    },
+    {
+      "icon_id": "23557332",
+      "name": "蚯蚓",
+      "font_class": "qiuyin",
+      "unicode": "e876",
+      "unicode_decimal": 59510
+    },
+    {
+      "icon_id": "23557872",
+      "name": "胖小",
+      "font_class": "pangxiao",
+      "unicode": "e877",
+      "unicode_decimal": 59511
+    }
+  ]
+}

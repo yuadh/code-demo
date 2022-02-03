@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .box {
+            width: 300px;
+            position: relative;
+        }
+        
+        .box img {
+            width: 300px;
+        }
+        
+        .box .title {
+            position: absolute;
+            left: 15px;
+            bottom: 20px;
+            z-index: 2;
+            width: 260px;
+            color: #fff;
+            font-size: 20px;
+            font-weight: 700;
+        }
+        
+        .box .mask {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 300px;
+            height: 212px;
+            transition: all 0.5s;
+            background-image: linear-gradient(transparent, rgba(0, 0, 0, .5));
+            opacity: 0;
+        }
+        
+        .box:hover .mask {
+            opacity: 1;
+        }
+        
+        .carbox {
+            /* position: relative; */
+            margin: 100px auto;
+            width: 1366px;
+            height: 600px;
+            background-image: url(./images/bg.jpg);
+            overflow: hidden;
+        }
+        
+        .carbox::before,
+        .carbox::after {
+            content: "";
+            float: left;
+            width: 50%;
+            height: 100%;
+            background: url(./images/fm.jpg) no-repeat;
+            transition: all 1s;
+        }
+        
+        .carbox::before {
+            background-color: red;
+            background-position: 0 0;
+        }
+        
+        .carbox::after {
+            background-color: blue;
+            background-position: right 0;
+        }
+        
+        .carbox:hover::before {
+            transform: translate(-100%);
+        }
+        
+        .carbox:hover::after {
+            transform: translateX(100%);
+        }
+        
+        .playbox {
+            width: 249px;
+            height: 210px;
+            margin: 100px auto;
+            overflow: hidden;
+            border: 1px solid red;
+            /* position: relative; */
+        }
+        
+        .playbox p {
+            margin: 0;
+            color: #3b3b3b;
+            padding: 10px 10px 0 10px;
+        }
+        
+        .playbox .pic img {
+            width: 100%;
+        }
+        
+        .playbox .pic {
+            position: relative;
+        }
+        
+        .playbox .pic::before {
+            content: "";
+            position: absolute;
+            display: inline-block;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%) scale(5);
+            width: 58px;
+            height: 58px;
+            background: url(./images/play.png) no-repeat;
+            transition: all .5s;
+            opacity: 0;
+        }
+        
+        .playbox:hover .pic::before {
+            transform: translate(-50%, -50%) scale(1);
+            opacity: 1;
+        }
+    </style>
+</head>
+
+<body>
+    <!-- 渐变案例 -->
+    <div class="box">
+        <!-- list展示卡片分三部分 图片 文字 渐变 -->
+        <img src="./images/product.jpg" alt="">
+        <div class="title">OceanStor Pacific 海量存储斩获2021 Interop金奖</div>
+        <div class="mask"></div>
+    </div>
+    <!-- 双开门案例 -->
+    <div class="carbox">
+
+    </div>
+    <!-- 播放遮罩案例 -->
+    <div class="playbox">
+        <div class="pic"><img src="images/party.jpeg" alt=""></div>
+        <p>【和平精英】“初火”音乐概念片：四圣觉醒......</p>
+
+    </div>
+</body>
+
+</html>

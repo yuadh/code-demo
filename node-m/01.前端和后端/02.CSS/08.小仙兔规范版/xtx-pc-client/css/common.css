@@ -1,0 +1,250 @@
+.container {
+    width: 1240px;
+    margin: 0 auto;
+}
+
+
+/* --------header */
+
+
+/* --------shortcut */
+
+.shortcut {
+    height: 52px;
+    background-color: #333333;
+}
+
+.shortcut .container {
+    height: 52px;
+    /* background-color: pink; */
+}
+
+.shortcut ul li {
+    float: left;
+    line-height: 52px;
+    color: #666666;
+}
+
+.shortcut li a {
+    height: 52px;
+    line-height: 52px;
+    font-size: 14px;
+    color: #dcdcdc;
+}
+
+.shortcut li span {
+    display: inline-block;
+    margin: 0 16px;
+    font-size: 14px;
+    color: #666666;
+}
+
+.shortcut li:last-child {
+    margin-right: 4px;
+}
+
+.shortcut li:last-child a::before {
+    content: "";
+    display: inline-block;
+    margin-right: 10px;
+    width: 11px;
+    height: 16px;
+    background: url(../images/sprites.png) no-repeat -160px -70px;
+    vertical-align: middle;
+}
+
+
+/* -------------xtx-main-nav */
+
+.xtx-main-nav {
+    height: 130px;
+    background-color: #fff;
+}
+
+.xtx-main-nav .container {
+    height: 130px;
+    /* background-color: pink; */
+    box-sizing: border-box;
+    padding-top: 30px;
+}
+
+
+/* logo */
+
+.xtx-main-nav .logo {
+    margin-left: 25px;
+    width: 207px;
+    height: 70px;
+    /* background-color: red; */
+}
+
+.xtx-main-nav .logo a {
+    display: block;
+    background: url(../images/logo.png);
+    background-size: 100%;
+    /* 转换的块级显示不会自动继承 */
+    height: 100%;
+    font-size: 0;
+}
+
+
+/* nav */
+
+.xtx-main-nav nav {
+    margin-left: 40px;
+    margin-right: 24px;
+}
+
+.xtx-main-nav nav li {
+    float: left;
+    height: 70px;
+    margin: 0 24px;
+    line-height: 70px;
+}
+
+.xtx-main-nav nav li a {
+    /* 公共类中已经设置好样式 */
+    font-size: 16px;
+    color: #333333;
+}
+
+.xtx-main-nav nav li:first-child {
+    margin-left: 0;
+}
+
+.xtx-main-nav nav li a:hover {
+    padding-bottom: 8px;
+    border-bottom: 1px solid #27ba9b;
+    color: #27ba9b;
+}
+
+
+/* search */
+
+.xtx-main-nav .search {
+    position: relative;
+    margin-left: 34px;
+    margin-top: 24px;
+    line-height: 30px;
+    width: 172px;
+    height: 30px;
+    background-color: #fff;
+}
+
+.xtx-main-nav .search input {
+    padding-left: 31px;
+    width: 172px;
+    height: 30px;
+    border-bottom: 2px solid #e7e7e7;
+    font-size: 14px;
+}
+
+.xtx-main-nav .search::before {
+    position: absolute;
+    content: "";
+    top: 5px;
+    left: 2px;
+    width: 18px;
+    height: 18px;
+    background: url(../images/sprites.png) no-repeat -80px -69px;
+}
+
+
+/* cart  */
+
+.xtx-main-nav .cart {
+    position: relative;
+    margin-left: 15px;
+    width: 23px;
+    height: 23px;
+    margin-top: 28px;
+    background: url(../images/sprites.png) no-repeat -120px -70px;
+}
+
+.xtx-main-nav .cart span {
+    /* 注意书写书顺序 */
+    position: absolute;
+    right: -12px;
+    top: -5px;
+    width: 20px;
+    height: 15px;
+    background-color: #e26237;
+    border-radius: 8px;
+    color: #fff;
+    font-size: 13px;
+    text-align: center;
+    line-height: 15px;
+}
+
+
+/* -----------------footer */
+
+
+/* -----------xtx-service */
+
+.xtx-service {
+    height: 175px;
+    background-color: #333;
+}
+
+.xtx-service .container {
+    box-sizing: border-box;
+    width: 1393px;
+    height: 175px;
+    /* background-color: red; */
+    border-bottom: 1px solid #434343;
+}
+
+.xtx-service .container a {
+    float: left;
+    height: 173px;
+    width: 33.33%;
+    font-size: 28px;
+    text-align: center;
+    color: #fff;
+    line-height: 173px;
+}
+
+.xtx-service .container a::before {
+    content: "";
+    display: inline-block;
+    margin-right: 19px;
+    background: url(../images/sprites.png) no-repeat 0 0;
+    width: 58px;
+    height: 58px;
+    vertical-align: middle;
+}
+
+.xtx-service .container a:nth-child(3):before {
+    background: url(../images/sprites.png) no-repeat -65px 0;
+}
+
+.xtx-service .container a:nth-child(2):before {
+    background: url(../images/sprites.png) no-repeat -130px 0;
+}
+
+
+/* ------------copyright */
+
+.copyright {
+    height: 168px;
+    background-color: #333;
+}
+
+.copyright .container {
+    box-sizing: border-box;
+    height: 168px;
+    font-size: 14px;
+    padding-top: 40px;
+    text-align: center;
+    color: #999999;
+}
+
+.copyright .container p a {
+    /* line-height: 41px; */
+    color: #999999;
+}
+
+.copyright .container p:first-child {
+    height: 35px;
+}

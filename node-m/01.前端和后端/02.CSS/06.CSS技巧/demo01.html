@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+        
+        .box {
+            width: 162px;
+            height: 24px;
+            text-align: center;
+            border: 1px solid red;
+            margin: 100px auto;
+        }
+        
+        .box span {
+            float: left;
+            position: relative;
+            display: inline-block;
+            width: 92px;
+            height: 24px;
+            background: red;
+            color: aliceblue;
+            font-weight: 700;
+            font-size: 17px;
+        }
+        
+        .fz {
+            display: inline-block;
+            border: 0;
+        }
+        
+        .box .fz {
+            position: absolute;
+            right: 0;
+            width: 0;
+            height: 0;
+            border-left: 10px solid red;
+            border-bottom: 24px solid white;
+        }
+        
+        .box s {
+            font-size: 12px;
+            color: #666666;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="box">
+        <span>￥1650 <div class="fz"></div></span>
+        <s>￥5650</s>
+    </div>
+</body>
+
+</html>

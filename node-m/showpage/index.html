@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>展示模块</title>
+    <link rel="stylesheet" href="css/prism.css">
+    <link rel="stylesheet" href="css/base.css">
+    <style>
+        .head {
+            position: relative;
+            height: 12vh;
+            text-align: center;
+            background-color: rgba(255, 255, 255, .95);
+        }
+        
+        .head .logoimg1 {
+            position: absolute;
+            left: 183.8vh;
+            top: -0vh;
+            background: url(./res/modal_role.png) no-repeat center top /contain;
+            height: 24vh;
+            width: 24vh;
+            margin-right: 20vh;
+        }
+        
+        .head .logoimg2 {
+            position: absolute;
+            left: 50vh;
+            top: -5vh;
+            background: url(./res/tzl.png) no-repeat center top /contain;
+            height: 24vh;
+            width: 24vh;
+            margin-right: 20vh;
+        }
+        
+        .head .gogo {
+            position: absolute;
+            left: 181vh;
+            top: -0vh;
+            background: url(./res/scroll.png) no-repeat center top /contain;
+            margin-right: 20vh;
+            height: 90vh;
+            width: 14vh;
+        }
+        
+        .head .logo {
+            display: inline-block;
+            margin-top: 1vh;
+            font-size: 8vh;
+            line-height: 10vh;
+        }
+        
+        .head .logo:hover a {
+            background-color: #ffc107;
+            color: white;
+            border-radius: 2vh/* font-size: 60px; */
+        }
+        
+        .funcshow {
+            box-sizing: border-box;
+            margin: 0vh auto;
+            background-color: #0085ad;
+            width: 140vh;
+            margin-top: 0vh;
+            margin-top: 0vh;
+        }
+        
+        .funcshow:active {
+            border: 1.8px solid #b3d4fc;
+        }
+        
+        .funcshow .funcshow_head {
+            /* color: white; */
+            height: 8vh;
+            background: rgba(255, 255, 255, .95);
+            text-align: left center;
+            font-size: 4vh;
+        }
+        
+        .codeshow_head {
+            /* color: white; */
+            height: 8vh;
+            background: rgba(255, 255, 255, .95);
+            text-align: left center;
+            font-size: 4vh;
+            margin-top: 0vh;
+            margin-bottom: -2vh;
+        }
+        
+        .codeshow {
+            margin: 0 auto;
+            width: 140vh;
+            /* border: 1px solid black; */
+        }
+    </style>
+</head>
+
+<body>
+    <div class="head" #here>
+        <span class="logoimg1"></span>
+        <span class="logoimg2"></span>
+        <span class="logo"><a href="">代码效果显示小站</a></span>
+        <span class="gogo"></span>
+    </div>
+
+    <div class="main">
+        <!-- 效果显示区开始 -->
+        <div class="funcshow">
+            <div class="funcshow_head">
+                代码效果展示区
+            </div>
+            <div class="funcshow_main">
+                <p>yuadh效果展示模块</p>
+                <p>yuadh效果展示模块</p>
+                <p>yuadh效果展示模块</p>
+                <p>yuadh效果展示模块</p>
+            </div>
+
+
+        </div>
+        <!-- 效果显示区结束 -->
+        <!-- 代码展示区开始 -->
+        <div class="codeshow">
+            <div class="codeshow_head">
+                代码块展示区
+            </div>
+            <pre><code class="language-js">
+                <!-- 以便可以显示html代码加的xmp标签 -->
+                <xmp>
+                     function begin(){
+                         console.log('hello world');
+                     }
+                     //yuadh代码展示模块
+                     //yuadh代码展示模块
+                     //yuadh代码展示模块
+                     //yuadh代码展示模块
+                     
+                     function begin(){
+                        console.log('hello world');
+                    }
+                    //yuadh代码展示模块
+                    //yuadh代码展示模块
+                    //yuadh代码展示模块
+                    //yuadh代码展示模块
+
+                    function begin(){
+                        console.log('hello world');
+                    }
+                    //yuadh代码展示模块
+                    //yuadh代码展示模块
+                    //yuadh代码展示模块
+                    //yuadh代码展示模块
+
+                    function begin(){
+                        console.log('hello world');
+                    }
+                    //yuadh代码展示模块
+                    //yuadh代码展示模块
+                    //yuadh代码展示模块
+                    //yuadh代码展示模块
+                </xmp>
+            </code></pre>
+        </div>
+        <!-- 代码展示区结束 -->
+    </div>
+    <div class="floor">
+        尾部显示
+    </div>
+    <script src="js/prism.js"></script>
+</body>
+
+</html>
