@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="./lib/jquery.js"></script>
+</head>
+
+<body>
+    <button id="req">发送1</button>
+    <button id="reqH">发送2</button>
+    <button id="reqD">发送3</button>
+    <button id="reqY">发送4</button>
+
+    <script>
+        $(function() {
+            //$.get()请求数据
+            $('#req').on('click', function() {
+                $.get('http://www.liulongbin.top:3006/api/getbooks', function(res) {
+                    console.log(res);
+                })
+            })
+            $('#reqH').on('click', function() {
+                    $.get('http://www.liulongbin.top:3006/api/getbooks', {
+                        id: 1
+                    }, function(res) {
+                        console.log(res);
+                    })
+                })
+                //$.post()发送数据
+            $('#reqD').on('click', function() {
+                    $.post('http://www.liulongbin.top:3006/api/addbook', {
+                            bookname: "永劫无间",
+                            author: "yuadh",
+                            publisher: "w4c"
+                        }),
+                        function(e) {
+                            console.log(e);
+                        }
+                })
+                //$.ajax()
+            $('#reqY').on('click', function() {
+                $.ajax({
+                    type: 'POST',
+                    url: 'http://www.liulongbin.top:3006/api/addbook',
+                    data: {
+                        bookname: "永劫无间",
+                        author: "yuadh",
+                        publisher: "w4c"
+                    },
+                    success: function(e) {
+                        console.log(e);
+                    }
+                })
+            })
+        })
+    </script>
+</body>
+
+</html>

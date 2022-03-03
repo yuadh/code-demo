@@ -1,0 +1,29 @@
+@font-face {
+  font-family: "iconfont"; /* Project id  */
+  src: url('iconfont.ttf?t=1645104347904') format('truetype');
+}
+
+.iconfont {
+  font-family: "iconfont" !important;
+  font-size: 16px;
+  font-style: normal;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.icon-daishouhuo:before {
+  content: "\f131";
+}
+
+.icon-shouhou:before {
+  content: "\f132";
+}
+
+.icon-daka:before {
+  content: "\f133";
+}
+
+.icon-dianpu:before {
+  content: "\f134";
+}
+

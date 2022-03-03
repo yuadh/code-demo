@@ -1,0 +1,1 @@
+export const rec = (big, little) => big - little;

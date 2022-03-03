@@ -1,0 +1,37 @@
+{
+  "id": "",
+  "name": "",
+  "font_family": "iconfont",
+  "css_prefix_text": "icon-",
+  "description": "",
+  "glyphs": [
+    {
+      "icon_id": "19490724",
+      "name": "待收货",
+      "font_class": "daishouhuo",
+      "unicode": "f131",
+      "unicode_decimal": 61745
+    },
+    {
+      "icon_id": "19490725",
+      "name": "售后",
+      "font_class": "shouhou",
+      "unicode": "f132",
+      "unicode_decimal": 61746
+    },
+    {
+      "icon_id": "19490726",
+      "name": "打卡",
+      "font_class": "daka",
+      "unicode": "f133",
+      "unicode_decimal": 61747
+    },
+    {
+      "icon_id": "19490727",
+      "name": "店铺",
+      "font_class": "dianpu",
+      "unicode": "f134",
+      "unicode_decimal": 61748
+    }
+  ]
+}

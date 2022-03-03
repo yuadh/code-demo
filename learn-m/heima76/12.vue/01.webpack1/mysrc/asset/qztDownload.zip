@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Error</title>
+<style>
+    body {
+        width: 700px;
+        margin: 0 auto;
+    }
+</style>
+</head>
+<body>
+<br/>
+<br/>
+<!--
+<h1>下载失败.</h1>
+-->
+<br/>
+<p><font size='6'>亲，当前普通下载线路非常拥挤，需要排队噢</font></p>
+<br>
+<br>
+<p>
+	<div><font size='3'>解决方法：</font></div>
+	<div style="margin-top:15px"><font size='3'>(1)多按几次F5键刷新本页（网站忙碌期8:00-23:00 可能要刷新十几次）</font></div>
+	<!--
+	<div style="margin-top:10px"><font size='3'>(2)如果下载文件损坏，是因为目前下载拥挤导致丢包，尝试重新下载即可</font></div>
+	-->
+	<div style="margin-top:10px"><font size='3'>(2)<a href='http://www.qiuziti.com/member.html' target='_blank'>升级为VIP终身会员，超大字体库超快下载，专享字体一键云端备份</a></font></div>
+	<!--
+	<div style="margin-top:10px;text-align:center;display:none" >
+		<br>
+		<font  size='3'><b>支付宝二维码</b></font>
+		<br>
+		<img src='http://fs.lianty.com:8082/img/code/code.jpg'>
+		
+		<br>
+		<font size='3'>欢迎捐助5元帮我们扩充服务器</font>
+	</div>
+	-->
+</p>
+
+</body>
+</html>
