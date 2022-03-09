@@ -2,7 +2,7 @@
 #include <Windows.h>
 #include <stdlib.h>
 #include <string.h>
-#include <graphics.h>		// ÒıÓÃÍ¼ĞÎ¿âÍ·ÎÄ¼ş
+#include <graphics.h>		// ????????
 #include <conio.h>
 // status
 #define SUCCESS 1
@@ -19,14 +19,14 @@ typedef struct{
     student  stuDatas[MAXSIZE];
     int length;
 }stuList;
-stuList pro;//È«¾Ö±äÁ¿
+stuList pro;//????
 // Operation	
-/*getstu(L,i,*e):»ñÈ¡Á´±íµÚindexÎ»ÖÃµÄÔªËØ,·µ»Ø¸øe
-  inserStu(*L,i,e):²åÈëĞÂÔªËØeÔÚÁ´±íµÚindexµÄÎ»ÖÃÉÏ
-  deleteStu(*L,i,*e):É¾³ıµÚindexÎ»ÖÃµÄÔªËØ
-  changeStu(*L,i,e):ĞŞ¸ÄµÚindexÎ»ÖÃµÄÔªËØÎªe
+/*getstu(L,i,*e):?????index?????,???e
+  inserStu(*L,i,e):?????e????index????
+  deleteStu(*L,i,*e):???index?????
+  changeStu(*L,i,e):???index??????e
 */
-// »ñÈ¡Á´±íÔªËØ
+// ??????
 STATUA getStu(stuList pro,int index,student *stuSomeOne){
     if(pro.length==0||index<1||index>pro.length){
         return ERROR;
@@ -34,15 +34,15 @@ STATUA getStu(stuList pro,int index,student *stuSomeOne){
     *stuSomeOne = pro.stuDatas[index-1];
 	return SUCCESS;
 }
-// ²åÈëÁ´±íÔªËØ
+// ??????
 STATUA insertStu(stuList *pro,int index,student stuSomeOne){
 	if(index<1||index>pro->length+1){
 		return ERROR;
 	}
-	if(index==pro->length+1){//ÔÚÄ©Î²²åÈë
+	if(index==pro->length+1){//?????
 		pro->stuDatas[pro->length]=stuSomeOne;
 		pro->length++;
-	}else{//ÔÚÖĞ¼ä²åÈë 
+	}else{//????? 
 		for(int i=pro->length;i>=index;i--){
 			pro->stuDatas[i]=pro->stuDatas[i-1];	
 		}	
@@ -51,20 +51,20 @@ STATUA insertStu(stuList *pro,int index,student stuSomeOne){
 	}
 	return SUCCESS;
 }
-// É¾³ıÁ´±íÔªËØ
+// ??????
 STATUA deleteStu(stuList *pro,int index,student *stuSomeOne){
 	int i;
 	if(pro->length==0||index<1||index>pro->length){
 		return ERROR;
 	}
-	//½«indexÎ»ÖÃÖ®ºóµÄÔªËØÇ°ÒÆ
+	//?index?????????
 	for(i=index;i<=pro->length;i++){
 		pro->stuDatas[i-1]=pro->stuDatas[i];
 	}
 	pro->length--;
 	return SUCCESS;
 }
-// ĞŞ¸ÄÁ´±íÔªËØ
+// ??????
 STATUA changeStu(stuList *pro,int index,student stuSomeOne){
 	if(pro->length==0||index<1||index>pro->length){
 		return ERROR;
@@ -72,36 +72,14 @@ STATUA changeStu(stuList *pro,int index,student stuSomeOne){
 	pro->stuDatas[index-1]=stuSomeOne;
 }
 // void initWin(){
-// 	initgraph(600, 600,EW_DBLCLKS);	// ´´½¨»æÍ¼´°¿Ú£¬´óĞ¡Îª 640x480 ÏñËØ
+// 	initgraph(600, 600,EW_DBLCLKS);	// ?????????? 640x480 ??
 // 	IMAGE background;
 // 	loadimage(&background,"resources\\background.png",600,600,1);
 // 	putimage(0,0,&background);
-// 	// circle(200, 200, 100);	// »­Ô²£¬Ô²ĞÄ(200, 200)£¬°ë¾¶ 100
-// 	_getch();				// °´ÈÎÒâ¼ü¼ÌĞø
-// 	closegraph();			// ¹Ø±Õ»æÍ¼´°¿Ú	
+// 	// circle(200, 200, 100);	// ?????(200, 200)??? 100
+// 	_getch();				// ??????
+// 	closegraph();			// ??????	
 // }
-//´°¿Ú½çÃæÊ¹ÓÃµ½µÄÍ¼Æ¬±äÁ¿
-IMAGE enterPic;
-IMAGE indexPic;
-void enterPage(){//¿ªÊ¼½çÃæ£¬°´ÈÎÒâ¼ü½øÈëÖ÷³ÌĞò
-	loadimage(&enterPic,"resources\\enter.png",800,600);
-	putimage(0,0,&enterPic);
-	MOUSEMSG msg;//¶¨Òå±äÁ¿£¬±£´æÊó±êÏûÏ¢
-	void FlushMouseMsgBuffer();// Çå¿ÕÊó±êÏûÏ¢»º³åÇø£¬±ÜÃâÎŞĞ§Êó±êĞÅÏ¢´øÈëµ½ÕıÊ½ÅĞ¶ÏÖĞ
-	while(true){
-		while(MouseHit()){//Á¬Ğø¼àÌıÊó±êĞÅÏ¢
-			msg = GetMouseMsg();//»ñÈ¡Êó±êÏûÏ¢
-			if (msg.uMsg==WM_LBUTTONDOWN){//ÅĞ¶ÏÊó±êĞÅÏ¢;Êó±ê×ó¼ü°´ÏÂ
-				Sleep(100);
-				//½øÈë³ÌĞòÖ÷½çÃæ
-				loadimage(&indexPic,"resources\\bg.jpg",800,600);
-				putimage(0,0,&indexPic);
-			}	
-		}
-	}
-	_getch();				// °´ÈÎÒâ¼ü¼ÌĞø
-	closegraph();			// ¹Ø±Õ»æÍ¼´°¿Ú	
-}
 void InitListReadFile(stuList *pro,char *fileName);
 void WriteListFile(stuList *pro,char *fileName);
 void listListen(stuList *pro);
@@ -109,40 +87,119 @@ void showAllStu(stuList *pro);
 void proAddStu(stuList *pro);
 void prodelStu(stuList *pro);
 void proEdiStu(stuList *pro);
-int main(){
+//????????????
+IMAGE enterPic;
+IMAGE indexPic;
+IMAGE logoPic;
+// RGB color;
+void mainPage();
+void enterPage(){//??????????????
+	loadimage(&enterPic,"resources\\enter.png",800,600);
+	putimage(0,0,&enterPic);
+	MOUSEMSG msg;//???????????
+	void FlushMouseMsgBuffer();// ??????????????????????????
+	while(true){
+		while(MouseHit()){//????????
+			msg = GetMouseMsg();//??????
+			if (msg.uMsg==WM_LBUTTONDOWN){//??????;??????
+				Sleep(100);
+				//???????
+				mainPage();
+			}	
+		}
+	}
+	_getch();				// ??????
+	closegraph();			// ??????	
+}
+void initMainP(){
 	InitListReadFile(&pro,"test.txt");
-	initgraph(800, 600);//³õÊ¼»¯´°¿Ú
-	//³õÊ¼»¯¶ÔÎÄ¼ş½øĞĞ¶Á²Ù×÷
+	setbkmode(TRANSPARENT);
+	loadimage(&indexPic,"resources\\mainbackg.png",800,600);
+	putimage(0,0,&indexPic);
+	LOGFONT f;
+	gettextstyle(&f);						// ????????
+	f.lfHeight = 58;						// ??????? 48
+	_tcscpy(f.lfFaceName, _T("??"));		// ?????â€œ??â€(??? VC ???? _tcscpy_s ??)
+	f.lfQuality = ANTIALIASED_QUALITY;		// ??????????  
+	settextstyle(&f);						// ??????
+	// outtextxy(0, 50, _T("?????"));
+	// char proTitle[20] = { "????????" };
+	// settextstyle(80, 0, "????");
+	setcolor(RGB(9,164,59));
+	outtextxy(160, 40, _T("å­¦ç”Ÿæˆç»©ç®¡ç†ç³»ç»Ÿ"));
+	setcolor(YELLOW);
+	setfillcolor(RGB(224,240,230));
+	solidrectangle(
+		100,
+		100,
+		700,
+		500
+	);
+	f.lfHeight = 40;						// ??????? 48
+	_tcscpy(f.lfFaceName, _T("????"));		// ?????â€œ??â€(??? VC ???? _tcscpy_s ??)
+	f.lfQuality = ANTIALIASED_QUALITY;		// ??????????  
+	settextstyle(&f);						// ??????
+	setcolor(RGB(58,59,79));
+	outtextxy(180, 120, _T("??"));
+	outtextxy(380, 120, _T("??"));
+	outtextxy(580, 120, _T("??"));
+}
+void mainPage(){
+	initMainP();//?????
+	//????
+	LOGFONT f;
+	gettextstyle(&f);						// ????????
+	f.lfHeight = 30;						// ??????? 48
+	_tcscpy(f.lfFaceName, _T("????"));		// ?????â€œ??â€(??? VC ???? _tcscpy_s ??)
+	f.lfQuality = ANTIALIASED_QUALITY;		// ??????????  
+	settextstyle(&f);						// ??????
+	// outtextxy(0, 50, _T("?????"));
+	// char proTitle[20] = { "????????" };
+	// settextstyle(80, 0, "????");
+	setcolor(RGB(58,59,79));
+	// getStu(stuList pro,int index,student *stuSomeOne)
+	student test; char stuID[10],stuScore[10];
+	// outtextxy(160, 150,stuID);
+	outtextxy(260, 150,test.stuName);
+	// outtextxy(460, 150,test.stuScore);
+}
+
+
+
+int main(){
+	// InitListReadFile(&pro,"test.txt");
+	initgraph(800, 600);//?????
+	//???????????
 	enterPage();
 	// return 0;
 	// listListen(&pro);
     // scanf("%d");
 }
-// Ó¦ÓÃ²Ù×÷
+// ????
 /*
-	Ó¦ÓÃ²ãÃæ²Ù×÷
+	??????
 */
-void InitListReadFile(stuList *pro,char *fileName){//¶ÁÎÄ¼ş²Ù×÷
+void InitListReadFile(stuList *pro,char *fileName){//?????
 	FILE *fp;
 	fp=fopen(fileName,"r");
-	// printf("²åÈë³É¹¦\n²åÈë¶ÔÏó:");
+	// printf("????\n????:");
 	student stu;int index=0;
 	while(fscanf(fp,"%d\t%s\t%f\n",&stu.stuID,stu.stuName,&stu.stuScore) != EOF){
 		if(insertStu(pro,++index,stu)){
-			printf("²åÈë³É¹¦\n²åÈë¶ÔÏó:");
+			printf("????\n????:");
 			printf("%d %s  %.2f\n",stu.stuID,stu.stuName,stu.stuScore);
 		}else{
-			printf("²åÈëÊ§°Ü\n");
+			printf("????\n");
 			printf("%d %s  %.2f\n",stu.stuID,stu.stuName,stu.stuScore);
 		}
 	}
 	fclose(fp);
 }
-void WriteListFile(stuList *pro,char *fileName){//Ğ´ÎÄ¼ş²Ù×÷
+void WriteListFile(stuList *pro,char *fileName){//?????
 	FILE *fp;
 	fp=fopen(fileName,"w");
 	if(fp==NULL){
-		printf("ÎÄ¼ş´ò¿ªÊ§°Ü");
+		printf("??????");
 		return ;
 	}
 	for(int i=0;i<pro->length;i++){
@@ -150,30 +207,30 @@ void WriteListFile(stuList *pro,char *fileName){//Ğ´ÎÄ¼ş²Ù×÷
 	}
 	fclose(fp);
 }
-void listListen(stuList *pro){//¼àÌıÊÂ¼ş
+void listListen(stuList *pro){//????
 	while(1){
 		printf("--------------------\n");
-		printf("-----1.Ìí¼ÓÑ§Éú------\n");
-		printf("-----2.É¾³ıÑ§Éú------\n");
-		printf("-----3.ĞŞ¸ÄÑ§Éú------\n");
-		printf("-----4.²éÑ¯Ñ§Éú------\n");
-		printf("-----0.ÍË³ö³ÌĞò------\n");
+		printf("-----1.????------\n");
+		printf("-----2.????------\n");
+		printf("-----3.????------\n");
+		printf("-----4.????------\n");
+		printf("-----0.????------\n");
 		printf("--------------------\n");
 		int btn; scanf("%d",&btn);
 		switch(btn){
-			case 1://²åÈëÔªËØ
+			case 1://????
 				proAddStu(pro);
 				break;
-			case 2://É¾³ıÔªËØ
+			case 2://????
 				prodelStu(pro);
 				break;
-			case 3://ĞŞ¸ÄÔªËØ
+			case 3://????
 				proEdiStu(pro);
 				break;
-			case 4://²éÑ¯ÔªËØ
+			case 4://????
 				showAllStu(pro);
 				break;
-			case 0://ÍË³ö¹Ø±Õ³ÌĞò
+			case 0://??????
 				exit(0);
 				break;
 		}
@@ -182,59 +239,59 @@ void listListen(stuList *pro){//¼àÌıÊÂ¼ş
 	}
 }
 void showAllStu(stuList *pro){
-	printf("Ñ§ºÅ ĞÕÃû ³É¼¨\n");
+	printf("?? ?? ??\n");
 	for(int i=0;i<pro->length;i++){
 		printf("%d  ",pro->stuDatas[i].stuID);
     	printf("%s  ",pro->stuDatas[i].stuName);
     	printf("%.2f\n",pro->stuDatas[i].stuScore);
 	}
 }
-void proAddStu(stuList *pro){//²åÈëÑ§Éú
-	printf("ÊäÈë:Î»ÖÃ:%%d Ñ§ºÅ:%%d ĞÕÃû:%%s ³É¼¨:%%f\n");
+void proAddStu(stuList *pro){//????
+	printf("??:??:%%d ??:%%d ??:%%s ??:%%f\n");
 	int stuID,index;char stuName[100];float stuScore;
-	printf("Î»ÖÃ:");scanf("%d",&index);
-	printf("Ñ§ºÅ:");scanf("%d",&stuID);
-	printf("ĞÕÃû:");scanf("%s",stuName);
-	printf("³É¼¨:");scanf("%f",&stuScore);
+	printf("??:");scanf("%d",&index);
+	printf("??:");scanf("%d",&stuID);
+	printf("??:");scanf("%s",stuName);
+	printf("??:");scanf("%f",&stuScore);
 	// scanf("%d %d %s %f",&index,&stuID,stuName,&stuScore);
 	student stu;
 	stu.stuID=stuID;strcpy(stu.stuName,stuName);stu.stuScore=stuScore;
 	if(insertStu(pro,index,stu)){
-		printf("²åÈë³É¹¦\n²åÈë¶ÔÏó:");
+		printf("????\n????:");
 		printf("%d %s  %.2f\n",stu.stuID,stu.stuName,stu.stuScore);
 	}else{
-		printf("²åÈëÊ§°Ü\n");
+		printf("????\n");
 		printf("%d %s  %.2f\n",stu.stuID,stu.stuName,stu.stuScore);
 	}
 }
-void prodelStu(stuList *pro){//É¾³ıÑ§Éú
-	printf("ÊäÈë:Î»ÖÃ:%%d");
+void prodelStu(stuList *pro){//????
+	printf("??:??:%%d");
 	int index; 
 	scanf("%d",&index);
 	student stu;
 	if(deleteStu(pro,index,&stu)){
-		printf("É¾³ı³É¹¦\n");
+		printf("????\n");
 		printf("%d %s  %.2f\n",stu.stuID,stu.stuName,stu.stuScore);
 	}else{
-		printf("É¾³ıÊ§°Ü\n");
+		printf("????\n");
 		printf("%d %s  %.2f\n",stu.stuID,stu.stuName,stu.stuScore);
 	}
 }
 void proEdiStu(stuList *pro){
-	printf("ÊäÈë:ĞèĞŞ¸ÄÎ»ÖÃ:%%d");
+	printf("??:?????:%%d");
 	int stuID,index;char stuName[100];float stuScore;
 	scanf("%d",&index);
 	student stu;
-	printf("ÊäÈë:Î»ÖÃ:%%d Ñ§ºÅ:%%d ĞÕÃû:%%s ³É¼¨:%%f\n");
-	printf("Ñ§ºÅ:");scanf("%d",&stuID);
-	printf("ĞÕÃû:");scanf("%s",stuName);
-	printf("³É¼¨:");scanf("%f",&stuScore);
+	printf("??:??:%%d ??:%%d ??:%%s ??:%%f\n");
+	printf("??:");scanf("%d",&stuID);
+	printf("??:");scanf("%s",stuName);
+	printf("??:");scanf("%f",&stuScore);
 	stu.stuID=stuID;strcpy(stu.stuName,stuName);stu.stuScore=stuScore;
 	if(changeStu(pro,index,stu)){
-		printf("²åÈë³É¹¦\n²åÈë¶ÔÏó:");
+		printf("????\n????:");
 		printf("%d %s  %.2f\n",stu.stuID,stu.stuName,stu.stuScore);
 	}else{
-		printf("²åÈëÊ§°Ü\n");
+		printf("????\n");
 		printf("%d %s  %.2f\n",stu.stuID,stu.stuName,stu.stuScore);
 	}
 }
