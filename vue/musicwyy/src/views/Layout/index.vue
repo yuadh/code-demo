@@ -5,6 +5,7 @@
       left-text="返回"
       left-arrow
       border
+      fixed
       />
       <div class="main">
         <!-- 二级导航 -->

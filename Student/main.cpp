@@ -117,27 +117,8 @@ void initMainP(){
 	_tcscpy(f.lfFaceName, _T("黑体"));		// 设置字体为“黑体”(高版本 VC 推荐使用 _tcscpy_s 函数)
 	f.lfQuality = ANTIALIASED_QUALITY;		// 设置输出效果为抗锯齿  
 	settextstyle(&f);						// 设置字体样式
-	// outtextxy(0, 50, _T("抗锯齿效果"));
-	// char proTitle[20] = { "学生成绩管理系统" };
-	// settextstyle(80, 0, "微软雅黑");
 	setcolor(RGB(157,41,59));
 	outtextxy(160, 40, _T("学生成绩管理系统"));
-	//设置表格显示
-	setfillcolor(RGB(224,240,230));
-	solidrectangle(
-		100,
-		100,
-		700,
-		500
-	);
-	f.lfHeight = 40;						// 设置字体高度为 48
-	_tcscpy(f.lfFaceName, _T("微软雅黑"));		// 设置字体为“黑体”(高版本 VC 推荐使用 _tcscpy_s 函数)
-	f.lfQuality = ANTIALIASED_QUALITY;		// 设置输出效果为抗锯齿  
-	settextstyle(&f);						// 设置字体样式
-	setcolor(RGB(58,59,79));
-	outtextxy(180, 120, _T("学号"));
-	outtextxy(380, 120, _T("姓名"));
-	outtextxy(580, 120, _T("成绩"));
 	ButtonInit();
 }
 void ButtonInit(){
@@ -165,6 +146,29 @@ void ButtonInit(){
 void initMainDtaP(stuList now,int sta){
 	//铺设数据
 	LOGFONT f;
+	gettextstyle(&f);						// 获取当前字体设置
+	f.lfHeight = 58;						// 设置字体高度为 48
+	_tcscpy(f.lfFaceName, _T("黑体"));		// 设置字体为“黑体”(高版本 VC 推荐使用 _tcscpy_s 函数)
+	f.lfQuality = ANTIALIASED_QUALITY;		// 设置输出效果为抗锯齿  
+	settextstyle(&f);						// 设置字体样式
+	//设置表格显示
+	setfillcolor(RGB(224,240,230));
+	solidrectangle(
+		100,
+		100,
+		700,
+		500
+	);
+	f.lfHeight = 40;						// 设置字体高度为 48
+	_tcscpy(f.lfFaceName, _T("微软雅黑"));		// 设置字体为“黑体”(高版本 VC 推荐使用 _tcscpy_s 函数)
+	f.lfQuality = ANTIALIASED_QUALITY;		// 设置输出效果为抗锯齿  
+	settextstyle(&f);						// 设置字体样式
+	setcolor(RGB(58,59,79));
+	outtextxy(180, 120, _T("学号"));
+	outtextxy(380, 120, _T("姓名"));
+	outtextxy(580, 120, _T("成绩"));
+	ButtonInit();
+
 	setcolor(RGB(58,59,79));
 	gettextstyle(&f);						// 获取当前字体设置
 	f.lfHeight = 30;						// 设置字体高度为 48
@@ -185,54 +189,102 @@ void initMainDtaP(stuList now,int sta){
 }
 
 void mainPage(){
+	int changeFlag = 1;
 	initMainP();//初始化页面
-	initMainDtaP(pro,0);//铺设数据页面	
+	// initMainDtaP(pro,0);//铺设数据页面	
 	while(1){//按键监听
+		//需要重新铺设数据
+		if(changeFlag){
+			initMainDtaP(pro,0);//铺设数据页面	
+			changeFlag--;
+		}
 		FlushMouseMsgBuffer();//清空鼠标暂存
 		sta = GetMouseMsg();
 		HWND wnd = GetHWnd();
-		if(sta.x>106&&sta.x<236&&sta.y>515&&sta.y<560){
+		if(sta.x>106&&sta.x<236&&sta.y>515&&sta.y<560){//增加学生信息
 			setlinecolor(RED);
 			if(sta.uMsg==WM_LBUTTONDOWN){
-				MessageBox(wnd, "button1", "提示", MB_OK | MB_ICONWARNING);
+				student temp;
+				char index[10],stuID[10],stuName[40],stuScore[10];
+				InputBox(index, 10, "输入要插入的位置序号");
+				// int i = _wtoi(index);
+				int i = atoi(index);
+				InputBox(stuID, 10, "输入学生ID");
+				InputBox(temp.stuName, 40, "输入学生姓名");
+				InputBox(stuScore, 10, "输入学生成绩");
+				int tempID=atoi(stuID),tempScore=atof(stuScore);
+				temp.stuID=tempID;temp.stuScore=tempScore;
+				// STATUA insertStu(stuList *pro,int index,student stuSomeOne)
+				insertStu(&pro,i,temp);
+				WriteListFile(&pro,"test.txt");changeFlag++;
+				MessageBox(wnd, "写入成功", "提示", MB_OK | MB_ICONWARNING);
 			}
 		}
 		if(sta.x>256&&sta.x<386&&sta.y>515&&sta.y<560){
 			setlinecolor(RED);
 			if(sta.uMsg==WM_LBUTTONDOWN){
-				MessageBox(wnd, "button2", "提示", MB_OK | MB_ICONWARNING);
+				student temp;
+				char index[10];
+				InputBox(index, 10, "输入要删除的位置序号");
+				int i = atoi(index);
+				deleteStu(&pro,i,&temp);
+				MessageBox(wnd, "成功删除", "提示", MB_OK | MB_ICONWARNING);
+				//STATUA deleteStu(stuList *pro,int index,student *stuSomeOne)
+				//MessageBox(wnd, "button2", "提示", MB_OK | MB_ICONWARNING);
+				WriteListFile(&pro,"test.txt");changeFlag++;
 			}
 		}
-		if(sta.x>406&&sta.x<536&&sta.y>515&&sta.y<560){
+		if(sta.x>406&&sta.x<536&&sta.y>515&&sta.y<560){//查询学生信息
 			setlinecolor(RED);
 			if(sta.uMsg==WM_LBUTTONDOWN){
-				MessageBox(wnd, "button3", "提示", MB_OK | MB_ICONWARNING);
 				char index[10];
 				InputBox(index, 10, "输入要查询的序号");
 				// int i = _wtoi(index);
 				int i = atoi(index);
-				
-				MessageBox(wnd, index, "提示", MB_OK | MB_ICONWARNING);
+				student temp;
+				getStu(pro,i,&temp);
+				char tempShow[40]="";char stuID[10]=""; char stuScore[10];
+				sprintf(stuID,"%d",temp.stuID);
+				sprintf(stuScore,"%.2f",temp.stuScore);
+				strcat(tempShow,"查询到信息:学号:");
+				strcat(tempShow,stuID);
+				strcat(tempShow," 姓名:");
+				strcat(tempShow,temp.stuName);
+				strcat(tempShow," 成绩:");
+				strcat(tempShow,stuScore);
+				MessageBox(wnd, tempShow, "提示", MB_OK | MB_ICONWARNING);
 			}
 		}
 		if(sta.x>556&&sta.x<686&&sta.y>515&&sta.y<560){
 			setlinecolor(RED);
 			if(sta.uMsg==WM_LBUTTONDOWN){
-				MessageBox(wnd, "button4", "提示", MB_OK | MB_ICONWARNING);
+				// MessageBox(wnd, "button4", "提示", MB_OK | MB_ICONWARNING);
+				student temp;
+				char index[10],stuID[10],stuName[40],stuScore[10];
+				InputBox(index, 10, "输入要修改的位置序号");
+				// int i = _wtoi(index);
+				int i = atoi(index);
+				InputBox(stuID, 10, "输入学生ID");
+				InputBox(temp.stuName, 40, "输入学生姓名");
+				InputBox(stuScore, 10, "输入学生成绩");
+				int tempID=atoi(stuID),tempScore=atof(stuScore);
+				temp.stuID=tempID;temp.stuScore=tempScore;
+				// STATUA insertStu(stuList *pro,int index,student stuSomeOne)
+				// STATUA changeStu(stuList *pro,int index,student stuSomeOne)
+				changeStu(&pro,i,temp);
+				MessageBox(wnd, "修改成功", "提示", MB_OK | MB_ICONWARNING);
+				WriteListFile(&pro,"test.txt");changeFlag++;
 			}
 		}
 	}
 }
-
-
-
 int main(){
 	initgraph(800, 600);//初始化窗口
 	enterPage();
 }
 // 应用操作
 /*
-	应用层面操作
+	dos版-应用层面操作
 */
 void InitListReadFile(stuList *pro,char *fileName){//读文件操作
 	FILE *fp;

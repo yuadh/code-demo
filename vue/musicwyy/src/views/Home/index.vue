@@ -2,7 +2,8 @@
   <div>
       <p class="title">推荐歌单</p>
       <!-- <van-button type="primary">主要按钮</van-button> -->
-      <van-row gutter="6">
+      <div>
+        <van-row gutter="6">
         <van-col span="8" v-for="obj in reList" :key="obj.id">
           <van-image
           fit="cover"
@@ -10,6 +11,15 @@
           <p class="song_name">{{obj.name}}</p>
         </van-col>
       </van-row>
+      </div>
+      <p class="title">最新音乐</p>
+      <van-cell center v-for="obj in songList" :key="obj.id" 
+      :title="obj.name" :label="obj.song.artists[0].name + ' - ' + obj.name" is-link>
+      <!-- 使用 title 插槽来自定义标题 -->
+        <template #right-icon>
+          <van-icon name="play-circle-o" size="0.6rem" />
+        </template>
+      </van-cell>
   </div>
 </template>
 
@@ -19,7 +29,8 @@ import { newMusic } from '../../api/Home'
 export default {
   data(){
     return {
-      reList:[]
+      reList:[],
+      songList:[],
     }
   },
   async created(){
@@ -31,6 +42,7 @@ export default {
     const res2 = await newMusic({
       limit:20
     })
+    this.songList = res2.data.result;
     console.log(res2)
   }
 }
