@@ -1,5 +1,8 @@
 import sys
 from PIL import Image
+from numpy import *
+from scipy import constants
+
 def test():
     # age = 3
     # args = sys.argv
