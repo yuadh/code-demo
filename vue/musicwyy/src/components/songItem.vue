@@ -5,7 +5,7 @@
           :label="author + ' - ' + name "
         >
           <template #right-icon>
-            <van-icon name="play-circle-o" size="0.6rem"/>
+            <van-icon name="play-circle-o" @click="playFn" size="0.6rem"/>
           </template>
         </van-cell>
 </template>
@@ -16,7 +16,17 @@ export default {
         author:String,
         name:String,
         id:Number,
+    },
+    methods: {
+    playFn(){
+        this.$router.push({
+            path: '/play',
+            query: {
+                id: this.id // 歌曲id, 通过路由跳转传递过去
+            }
+        })
     }
+}
 }
 </script>
 
