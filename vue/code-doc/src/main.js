@@ -2,11 +2,15 @@ import Vue from 'vue'
 import App from './App.vue'
 import router from './router'
 import store from './store'
-import { Button } from 'vant';
+import { Button, NavBar, Form, Field, CellGroup } from 'vant';
 import 'amfe-flexible'
-import "@/styles/font.css"
+import "@/styles/index.less"
 Vue.config.productionTip = false
 Vue.use(Button)
+Vue.use(NavBar)
+Vue.use(Form)
+Vue.use(Field)
+Vue.use(CellGroup)
 new Vue({
     router,
     store,

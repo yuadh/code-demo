@@ -1,5 +1,10 @@
 <template>
-   <div>路由测试home</div>
+   <div>
+    路由测试home
+    
+
+    <span class="doc doc-gengduo"></span>
+  </div>
 </template>
 
 <script>
