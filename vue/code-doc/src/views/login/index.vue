@@ -12,6 +12,8 @@
           <i slot='left-icon' class="doc doc-shouji"></i>
         </van-field>
         <van-field
+          class="doc-yzm-warp"
+          autosize
           type="password"
           name="验证码"
           placeholder="请输入验证码"
@@ -43,18 +45,18 @@ export default {
     font-size: 37px;
   }
   .send-sms-btn{
-    width: 172px;
+    width: 158px;
     height: 46px;
-    margin-top:-10px ;
     /* 文字居中对齐 */
     line-height: 46px;
     background-color: #ededed;
     font-size: 22px;
     color: #666;
+    /* margin-bottom: 6px; */
   }
   /* urgre */
-  .doc-yanzhengma{
-    padding-top: 1px;
+  .doc-yzm-warp>.van-field__left-icon{
+    padding-top: 4px;
     color: red;
   }
 </style>
