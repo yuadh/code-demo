@@ -1,6 +1,7 @@
 import request from "./request";
 
-export const login = () => request({
-    method: 'GET',
-    url: '/v1_0/search?q=its'
+export const login = data => request({
+    method: 'POST',
+    url: '/v1_0/authorizations',
+    data
 })
