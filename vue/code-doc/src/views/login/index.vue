@@ -5,15 +5,15 @@
 
     <!-- 表单验证 -->
     <!-- 触发事件前线进行表单验证 -->
-    <van-form @submit="onSubmit">
+    <van-form ref="loginForm" @submit="onSubmit">
         <van-field
           type="number"
+          name="mobile"
           v-model="user.mobile"
           placeholder="请输入手机号"
-          required
           clearable
           maxlength="11"
-          rules="userFromRules.mobile"
+          :rules="userFromRules.mobile"
         >
           <i slot='left-icon' class="doc doc-shouji"></i>
         </van-field>
@@ -21,15 +21,28 @@
           v-model="user.code"
           class="doc-yzm-warp"
           type="number"
-          name="验证码"
+          name="code"
           placeholder="请输入验证码"
-          required
+          clearable
           maxlength="6"
-          rules="userFromRules.code"
+          :rules="userFromRules.code"
         >
           <i slot='left-icon' class="doc doc-yanzhengma"></i>
           <template #button>
-            <van-button class="send-sms-btn"  round size="small" type="default">获取验证码</van-button>
+            <!-- 表单内的标签会促发submit事件 -->
+            <van-button 
+            v-if="!isShowCountDown"
+            class="send-sms-btn"  
+            round
+            size="small"
+            native-type="button"
+            @click="onSendSms"
+            >获取验证码</van-button>
+            <van-count-down 
+            v-else
+            @finish="isShowCountDown=false"
+            :time="1*60*1000" 
+            format="ss s" />
           </template>
         </van-field>
       <div class="login-btn-warp">
@@ -42,7 +55,7 @@
 </template>
 
 <script>
-import {loginAPI} from '@/api/index'
+import {loginAPI,getCodeAPI} from '@/api/index'
 export default {
   data(){
     return {
@@ -61,14 +74,15 @@ export default {
           pattern:/^1[3|5|7|8]\d{9}$/,
           message:'手机格式错误'
         }],
-         code: [{
+        code: [{
           required: true,
           message: '验证码不能为空'
         }, {
           pattern: /^\d{6}$/,
           message: '验证码格式错误'
         }]
-      }
+      },
+      isShowCountDown:false
     }
   },
   methods: {
@@ -82,12 +96,42 @@ export default {
       try{
         const res = await loginAPI(this.user)
         this.$toast.success('登录成功')
+        this.$store.commit('setUser',res.data.data)
         console.log('登入成功',res)
       }catch(err){
-        this.$toast.fail('失败文案');
+        if(err.response.status === 400){
+          this.$toast.fail('手机号或验证码错误')
+        }else{
+          this.$toast.fail('未知错误')
+        }
         console.log('登入失败',err)
       }
+    },
+    async onSendSms(){
+      try{
+        console.log('发生验证码按钮有效')
+        //在登录表单提交之间，允许发送验证码提交只校验手机号码的格式
+        await this.$refs.loginForm.validate('mobile')
+      }catch(err){
+        //手机表单验证失败 阻止发送请求
+        return console.log('发送验证码表单验证失败',err)
+      }
+      // 表单验证成功后直接开始进入即使防止再次发送请求
+      this.isShowCountDown=true
+      try{
+        await getCodeAPI(this.user.mobile)
+        this.$toast('发送成功')
+      }catch(err){
+        this.isShowCountDown=false
+        if(err.response.status ===  429){
+          this.$toast('发送太频繁')
+        }else{
+          this.$toast('发送失败')
+        }
+        console.log('err'+err)
+      }
     }
+
   }
 }
 </script>
