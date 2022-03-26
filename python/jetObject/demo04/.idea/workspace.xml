@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="b4b1052e-3911-4c50-8a59-06b0298190ea" name="Changes" comment="" />
+    <list default="true" id="e688eedd-211b-4473-aedd-3c0db4e9736e" name="Changes" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -13,7 +13,7 @@
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />
   </component>
-  <component name="ProjectId" id="26QP2zzTKg2E20baCf9uGycdjzs" />
+  <component name="ProjectId" id="26manAxs0wtNyZCSziAyvgKp0eh" />
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
@@ -23,11 +23,11 @@
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="settings.editor.selected.configurable" value="editor.preferences.fonts.default" />
+    <property name="settings.editor.selected.configurable" value="com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable" />
   </component>
   <component name="RunManager">
     <configuration name="main" type="PythonConfigurationType" factoryName="Python" nameIsGenerated="true">
-      <module name="demo01" />
+      <module name="demo04" />
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
       <envs>
@@ -52,14 +52,17 @@
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
-      <changelist id="b4b1052e-3911-4c50-8a59-06b0298190ea" name="Changes" comment="" />
-      <created>1647352634874</created>
+      <changelist id="e688eedd-211b-4473-aedd-3c0db4e9736e" name="Changes" comment="" />
+      <created>1648031380571</created>
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
-      <updated>1647352634874</updated>
-      <workItem from="1647352638939" duration="36000" />
-      <workItem from="1648030448125" duration="75000" />
-      <workItem from="1648031194224" duration="185000" />
+      <updated>1648031380571</updated>
+      <workItem from="1648031381926" duration="120000" />
+      <workItem from="1648031895763" duration="115000" />
+      <workItem from="1648032172890" duration="165000" />
+      <workItem from="1648032365328" duration="60000" />
+      <workItem from="1648032452639" duration="125000" />
+      <workItem from="1648032585952" duration="892000" />
     </task>
     <servers />
   </component>
@@ -78,6 +81,6 @@
     </breakpoint-manager>
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
-    <SUITE FILE_PATH="coverage/demo01$main.coverage" NAME="main Coverage Results" MODIFIED="1647352655086" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/demo04$main.coverage" NAME="main Coverage Results" MODIFIED="1648031393557" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
   </component>
 </project>
