@@ -1,5 +1,7 @@
 <template>
-   <div>路由测试layout</div>
+   <div>
+      <router-view></router-view>
+   </div>
 </template>
 
 <script>

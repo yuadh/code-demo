@@ -5,7 +5,10 @@ Vue.use(Vuex)
 
 export default new Vuex.Store({
   state: {
-    user:JSON.parse(window.localStorage.getItem('CODEDOC_USER'))
+    user:{
+      token:"",
+      refresh_token:""
+    }
   },
   getters: {
   },

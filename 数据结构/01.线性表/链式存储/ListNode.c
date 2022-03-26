@@ -1,16 +1,20 @@
 #include <stdio.h>
 #include <stdlib.h>
-#inlcude <malloc.h>8
-typedef struct ListNode//å®šä¹‰é“¾è¡¨èŠ‚ç‚¹
+#include <malloc.h>
+typedef struct ListNode//¶¨ÒåÁ´±í½Úµã
 {
-    int nodeData;//æ•°æ®ï¿½?
-    struct ListNode *nodeNext;//åœ°å€ï¿½?
-}ListNode,*LinkList;//æŒ‡å‘èŠ‚ç‚¹çš„æŒ‡ï¿½?
-LinkList ListArg;//é“¾è¡¨å¤´èŠ‚ï¿½?
-ListNode ListOne;//å®žä½“èŠ‚ç‚¹
-LinkList InitList(LinkList L);
-LinkList InitList(LinkList L){
-    //åˆå§‹åŒ–é“¾è¡¨ï¼šè¿”å›žä¸€ä¸ªæŒ‡å‘å¤´èŠ‚ç‚¹çš„é“¾è¡¨æŒ‡é’ˆï¼Œå› ä¸ºæ˜¯ç©ºèŠ‚ç‚¹æ‰€ä»¥å¤´èŠ‚ç‚¹çš„æŒ‡é’ˆåŸŸæŒ‡å‘NULL
+    int nodeData;//Êý¾Ý??
+    struct ListNode *nodeNext;//µØÖ·??
+}ListNode,*LinkList;//Ö¸Ïò½ÚµãµÄÖ¸??
+LinkList ListArg;//Á´±íÍ·½Ú??
+ListNode ListOne;//ÊµÌå½Úµã
+// º¯ÊýÉùÃ÷
+LinkList InitListHead(LinkList L);
+
+
+//opear
+LinkList InitListHead(LinkList L){
+    //³õÊ¼»¯Á´±í£º·µ»ØÒ»¸öÖ¸ÏòÍ·½ÚµãµÄÁ´±íÖ¸Õë£¬ÒòÎªÊÇ¿Õ½ÚµãËùÒÔÍ·½ÚµãµÄÖ¸ÕëÓòÖ¸ÏòNULL
     ListNode *LN ;int x;
     L = (LinkList)malloc(sizeof(ListNode));
     L->nodeNext = NULL;
@@ -18,19 +22,104 @@ LinkList InitList(LinkList L){
     while(x!=-1){
         LN = (ListNode*)malloc(sizeof(ListNode));
         LN->nodeData=x;
+        LN->nodeNext=L->nodeNext;
         L->nodeNext=LN;
         scanf("%d",&x);
     }
     return L;
 }
-//é“¾è¡¨çš„å®žä½“ä¸ä½¿ç”¨æŒ‡é’ˆï¼Œä½†åœ¨é“¾è¡¨ç»“æž„æ–¹æ³•ä¼ å€¼æ—¶éœ€è¦ä½¿ç”¨åˆ°æŒ‡é’ˆ
-//å¤´æŒ‡é’ˆè¡¨ç¤ºé“¾è¡¨çš„åç§°
-int main(){
-    //å¤´æŒ‡é’ˆï¼šæŒ‡å‘å¤´èŠ‚ç‚¹çš„æŒ‡é’ˆ
-    //å¤´èŠ‚ç‚¹ï¼šä¸å­˜å‚¨æ•°æ®çš„ï¼ŒæŒ‡å‘é“¾è¡¨é¦–å…ƒç´ çš„å¤´ç»“ç‚¹
-    //é¦–å…ƒç´ ï¼šé“¾è¡¨çš„ç¬¬ä¸€ä¸ªå…ƒï¿½?
-    ListArg=InitList(ListArg); //å¤´æŒ‡é’ˆï¼Œä¼ å…¥å¤´ç»“ç‚¹çš„åœ°å€
-    // printf(ListArg->nodeData);
-    printf("success-%d-one",ListArg->nodeNext->nodeNext->nodeData);
+LinkList InitListEnd(LinkList L){
+    ListNode *LN,*EN; int x;
+    L = (LinkList)malloc(sizeof(ListNode));
+    L->nodeNext = NULL;
+    EN = L;//Î²½Úµã
+    scanf("%d",&x);
+    while(x!=-1){
+        LN = (ListNode*)malloc(sizeof(ListNode));
+        LN->nodeData = x;
+        EN->nodeNext = LN;
+        EN = LN;
+        scanf("%d",&x);
+    }
+    EN->nodeNext = NULL;
+    return L;
+}
+void ShowList(LinkList L){//Ñ­»·Êä³öÁ´±íÖµ
+    if(L->nodeNext==NULL){
+        printf("Á´±íÎª¿Õ");
+        return;
+    }
+    LinkList f = L->nodeNext;//Ö¸ÏòÊ×Ôª½Úµã
+    while(f){
+        printf("Á´±íÖµ:%d\n",f->nodeData);
+        f = f->nodeNext;
+    }
+    return ;
+}
 
+ListNode getItemUN(LinkList L,int Nx){//¸ù¾ÝË÷Òý»ñÈ¡½Úµã
+    ListNode  *p = L->nodeNext; //Ö¸ÏòÊ×Ôª½Úµã
+    int f = 1;
+    if(Nx == 0){ // ¿Õ±í·µ»ØÍ·½Úµã 
+        return *L;
+    } 
+    while(p&&f<Nx){ //´ÓÊ×Ôª½Úµã¿ªÊ¼Ñ­»·Á´±íÖ¸ÏòÏÂÒ»Î»
+        p=p->nodeNext;
+        f++;
+    }
+    return *p;
+}
+ListNode getItemUV(LinkList L,int val){//¸ù¾Ý½ÚµãÖµ»ñÈ¡½Úµã
+    ListNode *p = L->nodeNext;//Ö¸ÏòÊ×Ôª½Úµã
+    while(p&&p->nodeData!=val){
+        p = p->nodeNext;
+    }
+    return *p;//Èç¹ûÁ´±íÎª¿Õ·µ»ØÖµNULL
+}
+void ListAddNode(LinkList L,int n,ListNode LN){
+    LinkList p = L; int f=0;
+    while(p&&f<(n-1)){//±íÍ·²»Îª¿Õ½«Á´±íÍÆÖÁÐèÒª²åÈëµÄÇ°Ò»Î»
+        p=p->nodeNext;
+        f++;
+    }
+    if(!p){//Èç¹û²åÈëÎ»ÖÃµÄÇ°Ò»¸ö½ÚµãÎª¿ÕÔò³ö´í
+        printf("error");
+        return ;
+    }
+    LN.nodeNext = p->nodeNext;
+    p->nodeNext = &LN;
+    return ;
+}
+ListNode ListRmNode(LinkList L,int n){
+    LinkList p = L; int f=0;
+    while(p&&f<(n-1)){//Ñ­»·µ½ÒªÉ¾³ýµÄÇ°Ò»¸öÔªËØ
+        p=p->nodeNext;
+        f++;
+    }
+    if(!p->nodeNext){//Èç¹ûÒªÉ¾³ýµÄÔªËØÎª¿Õ Ôò·µ»Ø
+        printf("error");
+        return *p->nodeNext;
+    }
+    LinkList delNode = p->nodeNext;
+    p->nodeNext = delNode->nodeNext;
+    free(delNode);
+    return *delNode;
+}
+
+//Á´±íµÄÊµÌå²»Ê¹ÓÃÖ¸Õë£¬µ«ÔÚÁ´±í½á¹¹·½·¨´«ÖµÊ±ÐèÒªÊ¹ÓÃµ½Ö¸Õë
+//Í·Ö¸Õë±íÊ¾Á´±íµÄÃû³Æ
+int main(){
+    //Í·Ö¸Õë£ºÖ¸ÏòÍ·½ÚµãµÄÖ¸Õë
+    //Í·½Úµã£º²»´æ´¢Êý¾ÝµÄ£¬Ö¸ÏòÁ´±íÊ×ÔªËØµÄÍ·½áµã
+    //Ê×ÔªËØ£ºÁ´±íµÄµÚÒ»¸öÔªËØ?
+    ListArg=InitListEnd(ListArg); //Í·Ö¸Õë£¬´«ÈëÍ·½áµãµÄµØÖ·
+    // printf(ListArg->nodeData);
+    // ListNode a = {4,NULL};
+    // ListAddNode(ListArg,4,a);
+    // ListOne=getItemUN(ListArg,5);
+    // LinkList x = getItem(ListArg,4);
+    // printf("È¡Öµ:%d\n",ListOne.nodeData);
+    ListRmNode(ListArg,4);
+    ShowList(ListArg);
+    return 0;
 }
