@@ -70,8 +70,8 @@ LinkListDDW InitListEndDDW(LinkListDDW  L){//双向循环链表尾插法
     L->nodePrev = EN;
     return L;
 }
-void ShowListDDW(LinkListDDW){
-    if(L->nodeNext==NULL){
+void ShowListDDW(LinkListDDW L){
+    if(L->nodeNext==L){
         printf("链表为空");
         return;
     }
