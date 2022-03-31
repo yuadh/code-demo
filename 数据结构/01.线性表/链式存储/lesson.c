@@ -1,19 +1,19 @@
 #include "Link.h"
-// link.h ·â×°ÁËÁ´Ê½´æ´¢Á´±íµÄ»ù±¾Êı¾İ½á¹¹
-// ÒÔÏÂÊÇ¶ÔÌâÄ¿µÄ¾ßÌåÌâ½â
+// link.h ??????
+// ???
 
 /** 
-01.½«Á½¸öµİÔöµÄÓĞĞòÁĞ±íºÏ²¢ÎªÒ»¸öµİÔöµÄÓĞĞòÁĞ±í¡£
-ÒªÇó½á¹ûÁ´±íÈÔÊ¹ÓÃÔ­À´Á½¸öÁ´±íµÄ´æ´¢¿Õ¼ä£¬²»ÁíÍâÕ¼ÓÃÆäËüµÄ´æ´¢¿Õ¼ä¡£±íÖĞ²»ÔÊĞíÓĞÖØ¸´µÄÊı¾İ
+01.?????
+??????????????
 **/
 void MergeList(LinkList listA,LinkList listB){
-    LinkList tA = listA->nodeNext,tB = listB->nodeNext;//Ö¸ÏòÊ×Ôª½Úµã£¬¹¤×÷½Úµã
-    LinkList t,tend; //ÁÙÊ±¸¨ÖúÁ´±í½ÚµãÖ¸Õë
-    listA->nodeNext = NULL ; //Ö¸Ïò¿ÕÁ´±í
-    tend = listA; //Î²½Úµã
+    LinkList tA = listA->nodeNext,tB = listB->nodeNext;//?????
+    LinkList t,tend; //???
+    listA->nodeNext = NULL ; //?
+    tend = listA; //??
     while(tA&&tB){//
         if(tA->nodeData<tB->nodeData){
-            //Í·²å·¨²åÈë²åÈëÁ´±í
+            //??
             tend->nodeNext = tA;
             tend = tA;
             tA = tA->nodeNext;
@@ -22,7 +22,7 @@ void MergeList(LinkList listA,LinkList listB){
             tend = tB;
             tB = tB->nodeNext;
         }else{
-            // É¾³ıÖØ¸´Êı¾İ
+            // ??
             tend->nodeNext = tA;
             tend = tA;
             tA = tA->nodeNext;
@@ -34,14 +34,14 @@ void MergeList(LinkList listA,LinkList listB){
     tend->nodeNext = tA?tA:tB;
     free(listB);
 }
-// ÒÑÖªÁ½¸öÁ´±í A ºÍ B ·Ö±ğ±íÊ¾Á½¸ö¼¯ºÏ£¬ÆäÔªËØµİÔöÅÅÁĞ¡£
-// ÇëÉè¼ÆÒ»¸öËã·¨£¬ÓÃÓÚÇó³ö A Óë B µÄ½»¼¯£¬²¢½«½á¹û´æ·ÅÔÚ A Á´±íÖĞ
+// ? A  B ??????
+// ?? A  B ? A 
 void listAUlistB(LinkList la,LinkList lb){
     LinkList tA = la->nodeNext,tB = lb->nodeNext;
     LinkList tend,t;
-    tend = la; // tendÎªÖ¸ÏòĞÂÁ´±íµÄÎ²ÔªËØ
+    tend = la; // tend????
     while(tA&&tB){
-        if(tA->nodeData==tB->nodeData){//½»¼¯£¬¼ÓÈëĞÂÁ´±íÊÍ·Å¶àÓà½Úµã
+        if(tA->nodeData==tB->nodeData){//???
             tend->nodeNext = tA;
             tend = tA;
             tA = tA->nodeNext;
@@ -49,7 +49,7 @@ void listAUlistB(LinkList la,LinkList lb){
             tB = tB->nodeNext;
             free(t);
         }else if(tA->nodeData<tB->nodeData){
-            //ÒòÎªÊÇµİÔöµÄÁ´±íËùÒÔÒªÉ¾³ı½ÏĞ¡µÄÔªËØÀ´¶Ô±ÈºóÃæµÄÔªËØÊÇ·ñÓĞ½»¼¯
+            //???????????
             t = tA;
             tA = tA->nodeNext;
             free(t);
@@ -59,7 +59,7 @@ void listAUlistB(LinkList la,LinkList lb){
             free(t);
         }
     }
-    while(tA){//ÊÍ·ÅÊ£Óà½Úµã
+    while(tA){//???
         t = tA;
         tA = tA->nodeNext;
         free(t);
@@ -72,15 +72,15 @@ void listAUlistB(LinkList la,LinkList lb){
     tend->nodeNext = NULL;
     free(lb);
 }
-//Éè¼ÆËã·¨½«Ò»¸ö´øÍ·½ÚµãµÄµ¥Á´±í A ·Ö½âÎªÁ½¸ö¾ßÓĞÏàÍ¬½á¹¹µÄÁ´±í B ºÍ C£¬
-//ÆäÖĞ B ±íµÄ½ÚµãÎª A ±íÖĞÖµĞ¡ÓÚ0µÄ½Úµã£¬
-//¶ø C ±íµÄ½ÚµãÎª A ±íÖĞÖµ´óÓÚ0µÄ½Úµã (Á´±íAÖĞµÄÔªËØÎª·ÇÁãÕûÊı£¬ÒªÇóB¡¢C±íÀûÓÃA±íµÄ½Úµã)
+//????? A ???? B  C
+// B ??? A ??0???
+// C ??? A ?0?? (A????BCA??)
 void  ListAtoBandC(LinkList la,LinkList lb,LinkList lc){
-    LinkList tA= la->nodeNext,tB = lb,tC = lc; //Ö¸Ïò¸÷×ÔÁ´±íµÄÎ²½Úµã
-    while(tA){//Ñ­»·Á´±í
+    LinkList tA= la->nodeNext,tB = lb,tC = lc; //???
+    while(tA){//?
         if(tA->nodeData == 0){
-            return ;//Èç¹ûÓĞ0ÕûÊı
-        }else if(tA->nodeData<0){//¼ÓÈë B ±í
+            return ;//0
+        }else if(tA->nodeData<0){// B 
             tB->nodeNext = tA;
             tB = tB->nodeNext;
             tA = tA->nodeNext;
@@ -94,31 +94,31 @@ void  ListAtoBandC(LinkList la,LinkList lb,LinkList lc){
     tC->nodeNext = NULL;
     free(la);
 }
-// Éè¼ÆÒ»¸öËã·¨£¬½«Á´±íÖĞËùÓĞ½ÚµãµÄÁ´±í·½Ïò `Ô­µØ` Ğı×ª£¬
-// ¼ÈÒªÇó½öÀûÓÃÔ­±íµÄ´æ´¢¿Õ¼ä£¬»»¾ä»°Ëµ£¬ÒªÇóËã·¨µÄ¿Õ¼ä¸´ÔÓ¶ÈÎª o(1)
+// ???? `?` ?
+// ??????????????? o(1)
 void ListReverse(LinkList la){
-    LinkList tA = la->nodeNext,trear,tpre;//¹¤×÷Ç°Çı£¬ºó¼Ì½Úµã
-    tpre = NULL ; //³õÊ¼»¯ Ç°Çı¿Õ½Úµã£¬ºó¼ÌÎªÍ·Ö¸Õë
+    LinkList tA = la->nodeNext,trear,tpre;//???
+    tpre = NULL ; //? ???????
     la->nodeNext = NULL;
     while(tA){
-        trear = tA->nodeNext;//´æ´¢ºóĞø½Úµã
+        trear = tA->nodeNext;//??
         tA->nodeNext = tpre;
         tpre = tA;
         tA = trear;
     }
     la->nodeNext = tpre;
 }
-// ÒÑÖª p Ö¸ÏòË«ÏòÑ­»·Á´±íÖĞµÄÒ»¸ö½Úµã£¬Æä½Úµã½á¹¹Îª `data`¡¢`prior`¡¢`next` Èı¸öÓò£¬
-// Éè¼ÆËã·¨ `change(p)` , ½»»» p ËùÖ¸ÏòµÄ½Úµã¼°ÆäÇ°Çı½ÚµãµÄË³Ğò
+// ? p ?????????? `data``prior``next` 
+// ? `change(p)` ,  p ???????
 void change(LinkList lp){
     
 }
 
 
 int main(){
-    //Í·Ö¸Õë£ºÖ¸ÏòÍ·½ÚµãµÄÖ¸Õë
-    //Í·½Úµã£º²»´æ´¢Êı¾İµÄ£¬Ö¸ÏòÁ´±íÊ×ÔªËØµÄÍ·½áµã
-    //Ê×ÔªËØ£ºÁ´±íµÄµÚÒ»¸öÔªËØ
+    //???????
+    //??????????
+    //?????
     // ListArg=InitListEnd(ListArg);
     LinkList la,lb,lc;
     la = InitListEnd(la);
