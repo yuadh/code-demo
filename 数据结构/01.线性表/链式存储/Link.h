@@ -56,27 +56,31 @@ LinkListDDW InitListEndDDW(LinkListDDW  L){//双向循环链表尾插法
     ListNodeDDW *LN,*EN;int x;
     L = (LinkListDDW)malloc(sizeof(ListNodeDDW));
     L->nodeNext = NULL; L->nodePrev = NULL;
-    EN = L;
+    EN = L;//工作指针
     scanf("%d",&x);
     while(x!=-1){
         LN = (ListNodeDDW*)malloc(sizeof(ListNodeDDW));
         LN->nodeData = x;
+        LN->nodePrev = NULL;
+        LN->nodeNext = NULL;
+
         EN->nodeNext = LN;
         LN->nodePrev = EN;
-        EN = LN;
+        EN = EN->nodeNext;
         scanf("%d",&x);
     }
     EN->nodeNext = L;
     L->nodePrev = EN;
+
     return L;
 }
-void ShowListDDW(LinkListDDW L){
+void ShowListDDW(LinkListDDW L){//通过后续节点遍历
     if(L->nodeNext==L){
         printf("链表为空");
         return;
     }
-    LinkList f = L->nodeNext;//指向首元节点
-    while(f){
+    LinkListDDW f = L->nodeNext;//指向首元节点
+    while(f&&f!=L){
         printf("链表值:%d\n",f->nodeData);
         f = f->nodeNext;
     }
