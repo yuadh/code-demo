@@ -2,27 +2,34 @@ import Vue from 'vue'
 import VueRouter from 'vue-router'
 Vue.use(VueRouter)
 
-const routes = [
-    {
+const routes = [{
         path: '/login',
         component: () =>
             import ('@/views/login')
     },
     {
-        path:'/',
-        component:()=>import ('@/views/layout'),
-        children:[
-            {
-                path:'',
-                name:'home',
-                component:()=>import('@/views/home')
+        path: '/',
+        component: () =>
+            import ('@/views/layout'),
+        children: [{
+                path: '',
+                name: 'home',
+                component: () =>
+                    import ('@/views/home')
             },
             {
-                path:'/my',
-                name:'my',
-                component:()=>import('@/views/my')
+                path: '/my',
+                name: 'my',
+                component: () =>
+                    import ('@/views/my')
             }
         ]
+    },
+    {
+        path: '/user/profile',
+        name: 'profileUser',
+        component: () =>
+            import ('@/views/profileUser')
     }
 ]
 

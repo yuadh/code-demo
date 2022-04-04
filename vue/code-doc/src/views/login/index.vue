@@ -1,7 +1,9 @@
 <template>
   <div>
     <!--导航条  -->
-    <van-nav-bar class="doc-nav-bar" title="登录" />
+    <van-nav-bar class="doc-nav-bar"  title="登录" >
+       <van-icon name="cross" slot="left" @click="$router.back()"/>
+    </van-nav-bar>
 
     <!-- 表单验证 -->
     <!-- 触发事件前线进行表单验证 -->
@@ -56,6 +58,7 @@
 
 <script>
 import {loginAPI,getCodeAPI} from '@/api/index'
+import router from '@/router'
 export default {
   data(){
     return {
@@ -98,6 +101,7 @@ export default {
         this.$toast.success('登录成功')
         this.$store.commit('setUser',res.data.data)
         console.log('登入成功',res)
+        router.back()
       }catch(err){
         if(err.response.status === 400){
           this.$toast.fail('手机号或验证码错误')
@@ -137,7 +141,7 @@ export default {
 </script>
     // 实现登入注册功能
 
-<style  lang="less">
+<style  scoped lang="less">
     /* 写样式 */
   .doc{
     font-size: 37px;
