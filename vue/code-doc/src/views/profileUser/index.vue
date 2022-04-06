@@ -6,7 +6,14 @@
      left-arrow
      @click-left="$router.back()"
     />
+    <input
+     type="file"
+     ref = 'file'
+     hidden
+     @change="toLoadPhoto"
+     />
     <van-cell
+     @click="$refs.file.click()"
      title="头像"
      center
      class="photo-cell" 
@@ -65,6 +72,20 @@
          @close="isUpdateBirthdayShow=false"
         /> 
     </van-popup>
+    <!-- 修改头像 纯客户端的裁剪处理 base64格式上传 -->
+    <van-popup 
+      closeable
+      v-model="isUpdatePhotoShow" 
+      position="bottom" 
+      :style="{ height: '100%' }"
+    >
+        <updataPhoto
+         v-if="isUpdatePhotoShow"
+         :img = "img"
+         @close = "isUpdatePhotoShow = false"
+         @updataPhoto="dat.photo=$event"
+        />
+    </van-popup>
   </div>
 </template>
 
@@ -73,11 +94,13 @@ import {getUserProfileAPI} from '@/api/index'
 import updataName from './components/updataName'
 import updataGender from './components/updataGender'
 import updataBrithday from './components/updataBrithday'
+import updataPhoto from './components/updataPhoto'
 export default {
     components:{
         updataName,
         updataGender,
-        updataBrithday
+        updataBrithday,
+        updataPhoto
     },
     data(){
         return{
@@ -86,6 +109,7 @@ export default {
             isUpdateGenderShow: false,
             isUpdateBirthdayShow: false,
             isUpdatePhotoShow: false,
+            img:null,
         }
     },
     created(){
@@ -100,6 +124,14 @@ export default {
             }catch(error){
                 console.log(error)
             }
+        },
+        toLoadPhoto(){
+            const file = this.$refs.file.files[0];
+            this.img = window.URL.createObjectURL(file)
+            console.log(this.img)
+            this.isUpdatePhotoShow = true 
+            //情况文件框
+            this.$refs.file.value = ""
         }
     }
 }

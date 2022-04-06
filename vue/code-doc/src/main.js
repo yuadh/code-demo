@@ -20,7 +20,10 @@ import {
     Dialog,
     Popup,
     Picker,
-    DatetimePicker
+    DatetimePicker,
+    Search,
+    Tab,
+    Tabs,
 
 } from 'vant';
 import 'amfe-flexible'
@@ -44,6 +47,9 @@ Vue.use(Dialog)
 Vue.use(Popup)
 Vue.use(Picker)
 Vue.use(DatetimePicker)
+Vue.use(Search)
+Vue.use(Tab)
+Vue.use(Tabs)
 new Vue({
     router,
     store,

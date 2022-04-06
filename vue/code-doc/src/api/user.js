@@ -27,3 +27,14 @@ export const changeUserProfile = (data) => request({
     url: '/v1_0/user/profile',
     data
 })
+
+export const changeUserPhoto = (data) => request({
+    method: 'PATCH',
+    url: '/v1_0/user/photo',
+    data
+})
+
+export const getChannels = () => request({
+    method: 'GET',
+    url: '/v1_0/user/channels'
+})

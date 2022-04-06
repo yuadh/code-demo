@@ -3,7 +3,9 @@ import {
     getCode,
     getUserInfo,
     getUserProfile,
-    changeUserProfile
+    changeUserProfile,
+    changeUserPhoto,
+    getChannels
 } from "./user";
 
 export const loginAPI = login
@@ -11,3 +13,5 @@ export const getCodeAPI = getCode
 export const getUserInfoAPI = getUserInfo
 export const getUserProfileAPI = getUserProfile
 export const changeUserProfileAPI = changeUserProfile
+export const changeUserPhotoAPI = changeUserPhoto
+export const getChannelsAPI = getChannels
