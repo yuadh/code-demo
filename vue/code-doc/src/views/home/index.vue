@@ -14,7 +14,9 @@
 
     <van-tabs class="channel-tabs" v-model="active" swipeable>
       <van-tab v-for="obj in channels" :key="obj.id" :title="obj.name">
-        组件
+        <ArticleList
+         :channel="obj"
+        />
       </van-tab>
       <div class="placeholder" slot="nav-right"/>
       <div
@@ -32,6 +34,7 @@
 import {mapState} from 'vuex'
 import {getChannelsAPI} from '@/api/index'
 import articlelist from './components/article-list'
+import ArticleList from './components/article-list.vue'
 export default {
   data() {
     return {
@@ -40,7 +43,7 @@ export default {
     };
   },
   components:{
-    
+    ArticleList
   },
   created () {
     this.loadChannels()
@@ -51,11 +54,13 @@ export default {
         // 待处理 需要进行本地持久化处理
         let channels=[]
         if(this.user){
+          console.log('用户频道')
           const {data} = await getChannelsAPI()
           channels = data.data.channels
           console.log(data)
         }else{
           // 发送无用户登入的默认频道
+          console.log('无用户频道')
           const {data} = await getChannelsAPI()
           channels = data.data.channels
           console.log(data)
