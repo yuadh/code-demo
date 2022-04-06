@@ -13,11 +13,10 @@
      </van-nav-bar>
 
     <van-tabs class="channel-tabs" v-model="active" swipeable>
-      <van-tab title="标签 1">内容 1</van-tab>
-      <van-tab title="标签 2">内容 2</van-tab>
-      <van-tab title="标签 3">内容 3</van-tab>
-      <van-tab title="标签 4">内容 4</van-tab>
-      <van-tab title="标签 5">内容 5</van-tab>
+      <van-tab v-for="obj in channels" :key="obj.id" :title="obj.name">
+        组件
+      </van-tab>
+      <div class="placeholder" slot="nav-right"/>
       <div
        slot="nav-right"
        class="hamburger-btn"
@@ -30,15 +29,46 @@
 </template>
 
 <script>
+import {mapState} from 'vuex'
 import {getChannelsAPI} from '@/api/index'
+import articlelist from './components/article-list'
 export default {
   data() {
     return {
-      active: 2,
+      active: 0,
+      channels:[]
     };
   },
-  created () {
+  components:{
     
+  },
+  created () {
+    this.loadChannels()
+  },
+  methods:{
+    async loadChannels(){
+      try{
+        // 待处理 需要进行本地持久化处理
+        let channels=[]
+        if(this.user){
+          const {data} = await getChannelsAPI()
+          channels = data.data.channels
+          console.log(data)
+        }else{
+          // 发送无用户登入的默认频道
+          const {data} = await getChannelsAPI()
+          channels = data.data.channels
+          console.log(data)
+        }
+        this.channels = channels
+      }catch(error){
+        console.log(error)
+        this.$toast('获取频道失败')
+      }
+    }
+  },
+  computed:{
+    ...mapState(['user'])
   }
 }
 </script>
@@ -64,10 +94,40 @@ export default {
         min-width: 200px;
         font-size: 30px;
         color: #777;
-      }
-    }
-    .hamburger-btn{
 
+      }
+      .van-tab--active {
+        color:#333;
+      }
+      .van-tabs__nav {
+        padding-bottom: 0;
+      }
+      .van-tabs__line{
+        bottom: 8px;
+        width:31px;
+        height: 8px;
+        background-color: #3296fa;
+      }
+      .placeholder{
+        flex-shrink: 0;
+        width: 66px;
+        height: 82px;
+      }
+      .hamburger-btn{
+        position: fixed;
+        right: 0;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 66px;
+        height: 82px;
+        background-color: #fff;
+        background-color: rgba(255, 255, 255, 0.902);
+        i.doc{
+          font-size: 33px;
+        }
+
+      }
     }
   }
 </style>

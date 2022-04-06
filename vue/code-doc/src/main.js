@@ -24,7 +24,8 @@ import {
     Search,
     Tab,
     Tabs,
-
+    List,
+    PullRefresh
 } from 'vant';
 import 'amfe-flexible'
 import "@/styles/index.less"
@@ -50,6 +51,8 @@ Vue.use(DatetimePicker)
 Vue.use(Search)
 Vue.use(Tab)
 Vue.use(Tabs)
+Vue.use(List)
+Vue.use(PullRefresh)
 new Vue({
     router,
     store,
