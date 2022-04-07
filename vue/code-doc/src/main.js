@@ -29,6 +29,7 @@ import {
 } from 'vant';
 import 'amfe-flexible'
 import "@/styles/index.less"
+import '@/utils/dayjs'
 Vue.config.productionTip = false
 Vue.use(Button)
 Vue.use(NavBar)

@@ -6,3 +6,8 @@ export const getArticles = (params) => request({
     url: '/v1_0/articles',
     params
 })
+
+export const getArtText = params => request({
+    method: 'GET',
+    url: `/v1_0/articles/${params}`
+})

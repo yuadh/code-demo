@@ -7,7 +7,7 @@ import {
     changeUserPhoto,
     getChannels,
 } from "./user";
-import { getArticles } from "./article"
+import { getArticles, getArtText } from "./article"
 export const loginAPI = login
 export const getCodeAPI = getCode
 export const getUserInfoAPI = getUserInfo
@@ -16,3 +16,4 @@ export const changeUserProfileAPI = changeUserProfile
 export const changeUserPhotoAPI = changeUserPhoto
 export const getChannelsAPI = getChannels
 export const getArticlesAPI = getArticles
+export const getArtTextAPI = getArtText
