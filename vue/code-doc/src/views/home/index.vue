@@ -1,5 +1,5 @@
 <template>
-    <div class="home-container">
+  <div class="home-container">
      <van-nav-bar class="doc-nav-bar">
        <van-button 
        slot="title"
@@ -22,11 +22,22 @@
       <div
        slot="nav-right"
        class="hamburger-btn"
+       @click="isChannelEditShow = true"
       >
         <i class="doc doc-gengduo"></i>
       </div>
     </van-tabs>
-
+    <van-popup 
+    closeable
+    position="bottom"
+    close-icon-position="top-left"
+    :style="{height:'100%'}"
+    v-model="isChannelEditShow">
+      <!-- 实现频道列表的编辑 -->
+      <channelEdit
+       :myChannels="channels"
+      />
+    </van-popup>
   </div>
 </template>
 
@@ -35,15 +46,18 @@ import {mapState} from 'vuex'
 import {getChannelsAPI} from '@/api/index'
 import articlelist from './components/article-list'
 import ArticleList from './components/article-list.vue'
+import channelEdit from './components/channelEdit.vue'
 export default {
   data() {
     return {
       active: 0,
-      channels:[]
+      channels:[],
+      isChannelEditShow:false,
     };
   },
   components:{
-    ArticleList
+    ArticleList,
+    channelEdit,
   },
   created () {
     this.loadChannels()

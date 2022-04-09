@@ -38,3 +38,8 @@ export const getChannels = () => request({
     method: 'GET',
     url: '/v1_0/user/channels'
 })
+
+export const getAllChannels = () => request({
+    method: 'GET',
+    url: '/v1_0/channels'
+})
