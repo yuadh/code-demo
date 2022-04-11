@@ -36,6 +36,8 @@
       <!-- 实现频道列表的编辑 -->
       <channelEdit
        :myChannels="channels"
+       :active="active"
+       @updataActive="updataActive"
       />
     </van-popup>
   </div>
@@ -47,6 +49,7 @@ import {getChannelsAPI} from '@/api/index'
 import articlelist from './components/article-list'
 import ArticleList from './components/article-list.vue'
 import channelEdit from './components/channelEdit.vue'
+import {getItem} from '@/utils/storage'
 export default {
   data() {
     return {
@@ -73,17 +76,27 @@ export default {
           channels = data.data.channels
           console.log(data)
         }else{
-          // 发送无用户登入的默认频道
+          // 发送无用户登入的默认频道 本地持久化处理
+          
           console.log('无用户频道')
-          const {data} = await getChannelsAPI()
-          channels = data.data.channels
-          console.log(data)
+          const loaclChannels = getItem('DOC_CHANNELS')
+          if(loaclChannels){//有本地数据直接使用本地数据
+            channels = loaclChannels
+          }else{
+            const {data} = await getChannelsAPI()
+            channels = data.data.channels
+            console.log(data)
+          }
         }
         this.channels = channels
       }catch(error){
         console.log(error)
         this.$toast('获取频道失败')
       }
+    },
+    updataActive(index,isChannelEditShow = true){
+      this.active = index
+      this.isChannelEditShow = isChannelEditShow
     }
   },
   computed:{

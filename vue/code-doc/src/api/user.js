@@ -43,3 +43,16 @@ export const getAllChannels = () => request({
     method: 'GET',
     url: '/v1_0/channels'
 })
+
+export const addUserChannel = (channel) => request({
+    method: 'PATCH',
+    url: 'v1_0/user/channels',
+    data: {
+        channels: [channel]
+    }
+})
+
+export const delUserChannel = (target) => request({
+    method: 'DELETE',
+    url: `/v1_0/user/channels/${target}`
+})
