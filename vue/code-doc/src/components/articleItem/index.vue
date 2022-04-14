@@ -2,6 +2,7 @@
   <div>
       <van-cell 
        class="article-item"
+       :to="{name:'article',params:{articleId:article.art_id}}"
       >
         <div slot="title" class="title">{{article.title}}</div>
         <div slot="label" class="" >

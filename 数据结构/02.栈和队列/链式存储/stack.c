@@ -11,12 +11,14 @@ LinkStack InitStack(LinkStack LS){//初始化栈队列
     LS = (LinkStack) malloc(sizeof(ListStack));
     LS = NULL; //初始化
     scanf("%c",&x);
-    while(x!=-1){
+    fflush(stdin);//防止回车输入
+    while(x!='e'){
         LN = (LinkStack) malloc(sizeof(ListStack));
         LN->NodeData = x;
         LN->NextNode = LS;
         LS = LN;
-        scanf("%d",&x);
+        scanf("%c",&x);
+        fflush(stdin);
     }
     return LS; 
 }
@@ -46,19 +48,23 @@ void ShowList(LinkStack LS){ //遍历栈
         printf("空栈");
     }
     while(L){
-        printf("栈顶值:%d\n",L->NodeData);
+        printf("栈顶值:%c\n",L->NodeData);
         L = L->NextNode;
     }
+    printf("----\n");
     return ;
 }
 
 int getStrLength(char *str);
 //
-int checkStr(LinkStack LS){
+int checkStr(){
+    LinkStack LS;
+    LS=InitStack(LS);
     // 检查括号字符串是否合法
     char KhStr[40];int len;
     gets(KhStr);
     len = getStrLength(KhStr);
+    printf("检测长度%d",len);
     // 算法思想：
     // 如果有左括号就加入栈中 有相应的右括号匹配弹栈 
     // 在少括号或括号不匹配的情况下判断为字符串非法
@@ -85,8 +91,10 @@ int checkStr(LinkStack LS){
                     return 0;//返回false
                 }
         }
+        ShowList(LS);
     }
-    return LS==NULL;//通过检验返回 true
+    if(LS!=NULL){return 0;}//最后的检验 判断栈是否为空
+    return 1;//通过检验返回 true
 }
 int getStrLength(char str[]){
     int l=0;
@@ -97,8 +105,10 @@ int getStrLength(char str[]){
 }
 
 int main(){
-    LinkStack ls;
-    ls=InitStack(ls);
-    checkStr(ls);//传入一个初始化的栈
-    // DntoOn(ls);
+    int sta=checkStr();
+    if(sta==0){
+        printf("不合法");
+    }else{
+        printf("合法");
+    }
 }   
