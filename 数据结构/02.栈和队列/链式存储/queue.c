@@ -31,32 +31,48 @@ QueueLink InitQueueLink(QueueLink QL){
     return QL;
 }
 // 入队
-void EnQueueLink(QueueLink QL){
-
+void EnQueueLink(QueueLink QL,int dat){
+    QueueND QN=(QueueND)malloc(sizeof(QueueNode));
+    QN->next = NULL; 
+    QN->NodeData = dat;
+    QL->rear->next = QN; 
+    QL->rear = QN;
+    // return QL;
 }
 
 // 出队
+void DeQueueLink(QueueLink QL){
+    if(QL->front == QL->rear){
+        printf("空队列");
+        return ;
+    }
+    QueueND QD= QL->front->next;
+    QL->front->next = QD->next;
+    if(QD == QL->rear){//如果只有一个节点在删除后设置队列为空
+       QL->rear = QL->front;
+    }
+    free(QD);
+}
+
 
 // 打印队列
 void ShowQueueLink(QueueLink QL){
-    printf("输出");
     QueueND n ; 
     n = QL->front->next;//指向队列首元素
     if(QL->front == QL->rear){
         printf("空队列");
         return ;
     }
-    printf("输出");
     while(n!=NULL){
         printf("队列值:%d\n",n->NodeData);
         n = n->next;
     }
-    printf("%d",QL->rear->next);
     return ;
 }
 
 int main(){
     QueueLink ql;
     ql = InitQueueLink(ql);
+    DeQueueLink(ql);
     ShowQueueLink(ql);
 }
