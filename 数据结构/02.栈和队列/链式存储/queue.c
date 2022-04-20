@@ -12,7 +12,7 @@ typedef struct QueueList{
 
 // 此队列引入了头指针 即front指向的元素为头元素 不存储值
 QueueLink InitQueueLink(QueueLink QL){
-    QL = (QueueLink)malloc(sizeof(QueueNode));
+    QL = (QueueLink)malloc(sizeof(QueueList));
     int x;
     QueueND QN; 
     QL->front = QL->rear =(QueueND)malloc(sizeof(QueueNode));  
