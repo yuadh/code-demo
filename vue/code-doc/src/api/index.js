@@ -9,8 +9,18 @@ import {
     getAllChannels,
     addUserChannel,
     delUserChannel,
+    followerUser,
+    unFollowerUser,
+    collectArticle,
+    unCollectArticle,
+    likeArt,
+    unLikeArt
 } from "./user";
-import { getArticles, getArtText } from "./article"
+import { 
+    getArticles, 
+    getArtText,
+    getArtComments
+} from "./article"
 export const loginAPI = login
 export const getCodeAPI = getCode
 export const getUserInfoAPI = getUserInfo
@@ -23,3 +33,10 @@ export const getArtTextAPI = getArtText
 export const getAllChannelsAPI = getAllChannels
 export const addUserChannelAPI = addUserChannel
 export const delUserChannelAPI = delUserChannel
+export const followerUserAPI = followerUser
+export const unFollowerUserAPI = unFollowerUser
+export const collectArticleAPI = collectArticle
+export const unCollectArticleAPI = unCollectArticle
+export const likeArtAPI = likeArt
+export const unLikeArtAPI = unLikeArt
+export const getArtCommentsAPI = getArtComments

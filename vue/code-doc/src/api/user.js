@@ -56,3 +56,40 @@ export const delUserChannel = (target) => request({
     method: 'DELETE',
     url: `/v1_0/user/channels/${target}`
 })
+
+export const followerUser = (target) => request({
+    method:'POST',
+    url:'/v1_0/user/followings',
+    data:{
+        target
+    }
+})
+
+export const unFollowerUser = (target) => request({
+    method:'DELETE',
+    url:`/v1_0/user/followings/${target}`, 
+})
+
+export const collectArticle = (target) => request({
+    method:'POST',
+    url:'/v1_0/article/collections',
+    data:{
+        target
+    }
+})
+export const unCollectArticle = (target) => request({
+    method:'DELETE',
+    url:`/v1_0/article/collections/${target}`
+})
+
+export const likeArt = (target) => request({
+    method:'POST',
+    url:'/v1_0/article/likings',
+    data:{
+        target
+    }
+})
+export const unLikeArt = (target) => request({
+    method:'DELETE',
+    url:`/v1_0/article/likings/${target}`
+})
