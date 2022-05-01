@@ -30,11 +30,11 @@ export default {
   },
   props:{
     isFollowed:{
-      type:[Boolean],
+      Type:Boolean,
       required:true
     },
     userId:{
-      type:[Number,String,Object],
+      Type:[Number,String,Object],
       required:true
     },
   },

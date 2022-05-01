@@ -10,15 +10,15 @@
     <!-- 主页及显示逻辑 -->
     <div class="main-wrap">
       <!-- 加载中显示模块 -->
-      <!-- <div class="loading-wrap">
+      <div v-if="loading" class="loading-wrap">
          <van-loading
           color="#3296fa"
           vertical
         >加载中</van-loading>
-      </div> -->
+      </div>
 
       <!-- 加载成功显示模块 -->
-      <div class="article-main">
+      <div v-else-if="article.title" class="article-main">
         <!-- 文章标题 -->
         <h1 class="article-title">{{article.title}}</h1>
         <!-- 用户信息 -->
@@ -45,7 +45,10 @@
 
         <van-divider>正文结束</van-divider>
         <!-- 文章评论列表 -->
-        <commentList/>
+        <commentList
+         :artId="article.art_id"
+         :list="commentList"
+         @success-loadComments="totalCommentCount = $event.total_count"/>
         <!-- 底部模块 -->
         <div class="article-bottom">
           <!-- 写评论 -->
@@ -59,7 +62,7 @@
           <van-icon 
            class="comment-icon"
            name="comment-o" 
-           badge="9" />      
+           :badge="totalCommentCount" />      
           <!-- 收藏文章 -->
           <collectarticle
            v-model="article.is_collected"
@@ -77,17 +80,17 @@
       </div>
 
       <!-- 加载404显示模块 -->
-      <!-- <div class="error-wrap">
+      <div v-else-if="errStatus===404" class="error-wrap">
         <van-icon name="failure" />
         <p class="text">该资源不存在或已删除</p>
-      </div> -->
+      </div>
 
       <!-- 其它未知错误显示模块 -->
-      <!-- <div class="error-wrap">
+      <div v-else class="error-wrap">
         <van-icon name="failure" />
         <p class="text">内容加载失败</p>
         <van-button class="retry-btn">点击重试</van-button>
-      </div> -->
+      </div>
     </div>
     <!-- 评论弹出层 -->
   </div>
@@ -102,7 +105,20 @@ import commentList from './components/comment-list.vue'
 export default {
   data(){
     return{
-      article:{}
+      article:{},
+      loading:true,
+      errStatus:0,
+      followLoading:false,
+      totalCommentCount:0,
+      isPostShow:false,
+      commentList:[],
+      isReplyShow:false,
+      currentComment:{}
+    }
+  },
+  provide:function(){//提供给子代使用的数据
+    return {
+      articleId:this.articleId
     }
   },
   props:{
@@ -122,20 +138,46 @@ export default {
   },
   methods:{
     async loadArtText(){
+      this.loading = true
       try{
         const {data} = await getArtTextAPI(this.articleId);
         this.article = data.data
         console.log(this.article)
 
-      }catch(err){
+        setTimeout(()=>{
+          this.previewImage()
+        },0)
 
+      }catch(err){
+        console.log(err)
+        if(err.response && err.response.status===404){
+          this.errStatus = 404
+        }
       }
+      this.loading=false
     },
-    loadImage(){
-      const artContent = this.$refs['article-content']
-      const imgs = artContent.querySelectorAll('img')
-      console.log(imgs)
-    }
+    previewImage () {
+      // 得到所有的 img 节点
+      const articleContent = this.$refs['article-content']
+      const imgs = articleContent.querySelectorAll('img')
+
+      // 获取所有 img 地址
+      const images = []
+      imgs.forEach((img, index) => {
+        images.push(img.src)
+
+        // 给每个 img 注册点击事件，在处理函数中调用预览
+        img.onclick = () => {
+          ImagePreview({
+            // 预览的图片地址数组
+            images,
+            // 起始位置，从 0 开始
+            startPosition: index
+          })
+        }
+      })
+    },
+
   }
 }
 </script>

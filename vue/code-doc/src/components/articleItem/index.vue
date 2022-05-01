@@ -41,7 +41,7 @@ import {getArtTextAPI} from '@/api/index'
 export default {
     props:{
         article:{
-            type:[String,Object],
+            Type:[String,Object],
             required:true
         }
     },
