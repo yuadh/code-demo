@@ -21,11 +21,11 @@ export default {
     },
     props:{
         artId:{
-            Type:[Number,String,Object],
+            type:[Number,String,Object],
             required:true
         },  
         artLikeSta:{
-            Type:[Number,String,Object],
+            type:[Number,String,Object],
             required:true
         },
     },

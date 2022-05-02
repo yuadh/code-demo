@@ -27,7 +27,8 @@ import {
     List,
     PullRefresh,
     Loading,
-    Divider
+    Divider,
+    ImagePreview 
 } from 'vant';
 import 'amfe-flexible'
 import "@/styles/index.less"
@@ -58,6 +59,7 @@ Vue.use(Tabs)
 Vue.use(List)
 Vue.use(PullRefresh)
 Vue.use(Divider)
+Vue.use(ImagePreview)
 new Vue({
     router,
     store,
