@@ -8,7 +8,10 @@
    :immediate-check="false"
    @load="loadComments">
    <!-- immediate是否在初始化是立即执行onLoad -->
-    <commentItem/>
+    <commentItem
+     v-for="(item,index) in list"
+     :key="index"
+     :comment="item"/>
   </van-list>
 </template>
 
@@ -57,7 +60,7 @@ export default {
             type:this.type,
             source:this.artId.toString(),
             offset:this.offset,
-            limit:15
+            limit:10
           })
           // 2.接收数据,装载数组
           const {results} = data.data
@@ -68,8 +71,9 @@ export default {
 
           // 除了初次加载页面时会自动加载本函数,在下拉评论列表时也会触发此函数
           if(results.length){//判断是否还有数据
-            this.offset = data.data.last.id
+            this.offset = data.data.last_id
           }else{
+            console.log('加载完成')
             this.finished = true
           }
         }catch(err){

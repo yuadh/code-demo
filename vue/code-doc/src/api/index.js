@@ -19,7 +19,9 @@ import {
 import { 
     getArticles, 
     getArtText,
-    getArtComments
+    getArtComments,
+    likeComment,
+    unLikeComment
 } from "./article"
 export const loginAPI = login
 export const getCodeAPI = getCode
@@ -40,3 +42,5 @@ export const unCollectArticleAPI = unCollectArticle
 export const likeArtAPI = likeArt
 export const unLikeArtAPI = unLikeArt
 export const getArtCommentsAPI = getArtComments
+export const likeCommentAPI = likeComment
+export const unLikeCommentAPI = unLikeComment
