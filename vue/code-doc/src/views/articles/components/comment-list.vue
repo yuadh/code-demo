@@ -11,7 +11,8 @@
     <commentItem
      v-for="(item,index) in list"
      :key="index"
-     :comment="item"/>
+     :comment="item"
+     @replyClick="$emit('replyClick',$event)"/>
   </van-list>
 </template>
 
@@ -33,9 +34,9 @@ export default {
       },
       type:{
         type:String,
-        // validator(value){
-        //   return ['a','c'].includes(value)
-        // },
+        validator(value){
+          return ['a','c'].includes(value)
+        },
         default:'a'
       }
     },

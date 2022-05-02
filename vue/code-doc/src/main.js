@@ -28,7 +28,7 @@ import {
     PullRefresh,
     Loading,
     Divider,
-    ImagePreview 
+    ImagePreview,
 } from 'vant';
 import 'amfe-flexible'
 import "@/styles/index.less"

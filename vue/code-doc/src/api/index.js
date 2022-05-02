@@ -16,12 +16,13 @@ import {
     likeArt,
     unLikeArt
 } from "./user";
-import { 
-    getArticles, 
+import {
+    getArticles,
     getArtText,
     getArtComments,
     likeComment,
-    unLikeComment
+    unLikeComment,
+    addComment
 } from "./article"
 export const loginAPI = login
 export const getCodeAPI = getCode
@@ -44,3 +45,4 @@ export const unLikeArtAPI = unLikeArt
 export const getArtCommentsAPI = getArtComments
 export const likeCommentAPI = likeComment
 export const unLikeCommentAPI = unLikeComment
+export const addCommentAPI = addComment

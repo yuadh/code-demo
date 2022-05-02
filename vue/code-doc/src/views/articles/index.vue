@@ -48,6 +48,7 @@
         <commentList
          :artId="article.art_id"
          :list="commentList"
+         @replyClick="replyFn"
          @success-loadComments="totalCommentCount = $event.total_count"/>
         <!-- 底部模块 -->
         <div class="article-bottom">
@@ -57,6 +58,7 @@
            type="default"
            round 
            size="small"
+           @click="isPostShow = true"
            >写评论</van-button>
           <!-- icon -->
           <van-icon 
@@ -76,6 +78,14 @@
           <!-- icon -->
           <van-icon name="share" color="#777777"/>
         </div>
+        <!-- 评论发布弹出层 -->
+        <van-popup
+         v-model="isPostShow"
+         position="bottom">
+         <commentPost
+          :target="article.art_id"
+          @postSuccess="postSuccessFn" />
+        </van-popup>
 
       </div>
 
@@ -92,7 +102,17 @@
         <van-button class="retry-btn">点击重试</van-button>
       </div>
     </div>
-    <!-- 评论弹出层 -->
+    <!-- 评论回复弹出层 -->
+    <van-popup
+     v-model="isReplyShow"
+     style="height: 100%;"
+     position="bottom">
+     <!-- 虽然弹出层没有显示当时仍然存在，v-if减少渲染 -->
+      <commentReply
+       v-if="isReplyShow"
+       :comment="currentComment"
+       @close="isReplyShow=false"/>
+    </van-popup>
   </div>
 </template>
 
@@ -102,6 +122,8 @@ import followuser from '@/components/follow-user'
 import likearticle from '@/components/like-article'
 import collectarticle from '@/components/collect-article'
 import commentList from './components/comment-list.vue'
+import commentPost from './components/comment-post.vue'
+import commentReply from './components/comment-reply.vue'
 export default {
   data(){
     return{
@@ -131,7 +153,9 @@ export default {
     followuser,
     likearticle,
     collectarticle,
-    commentList
+    commentList,
+    commentPost,
+    commentReply
   },
   created(){
     this.loadArtText()
@@ -177,7 +201,15 @@ export default {
         }
       })
     },
-
+    postSuccessFn(data){
+      this.isPostShow = false
+      this.commentList.unshift(data.new_obj) 
+    },
+    replyFn(comment){
+      console.log('评论回复层弹出')
+      this.currentComment = comment 
+      this.isReplyShow = true
+    }
   }
 }
 </script>
