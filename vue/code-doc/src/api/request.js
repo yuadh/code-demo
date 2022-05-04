@@ -7,7 +7,7 @@ import axios from 'axios'
 import jsonBig from 'json-bigint'
 import store from '@/store'
 import router from '@/router'
-axios.defaults.baseURL = 'http://toutiao.itheima.net' //设置项目的基地址所有的网络请求都是基于这个地址
+axios.defaults.baseURL = 'http://www.liulongbin.top:8000' //设置项目的基地址所有的网络请求都是基于这个地址
 
 // 在响应拦截之前对数据进行处理，可能会有数据操过安全范围进行转换
 axios.defaults.transformResponse = [function(data) {

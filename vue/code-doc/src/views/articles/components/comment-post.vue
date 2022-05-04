@@ -51,7 +51,8 @@ export default {
         try{
           const {data} = await addCommentAPI({
             target:this.target.toString(),
-            content:this.message
+            content:this.message,
+            art_id: this.articleId ? this.articleId.toString() : this.articleId
           })
           console.log(data)
           this.$emit('postSuccess',data.data)
