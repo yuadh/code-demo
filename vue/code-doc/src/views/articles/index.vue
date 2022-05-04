@@ -117,6 +117,7 @@
 </template>
 
 <script>
+import { ImagePreview } from 'vant'
 import {getArtTextAPI} from '@/api/index'
 import followuser from '@/components/follow-user'
 import likearticle from '@/components/like-article'

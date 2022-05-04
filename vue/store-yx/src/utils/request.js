@@ -10,20 +10,20 @@ const instance = axios.create({
 })
 // 请求拦截
 instance.interceptors.request.use(config=>{
-  const {profile} = store.state.profile
+  console.log('请求拦截成功了')
+  const {profile} = store.state.user
   if(profile.token){
     config.headers.Authorization = `Bearer ${profile.token}`
   }
   return config
 },err=>{
+  console.log('请求拦截失败了')
   return Promise.reject(err)
 })
 
 
 // 响应拦截
-instance.interceptors.response.use(res=>{
-  res.data
-},err=>{
+instance.interceptors.response.use(res=>res.data,err=>{
   if(err.response&&err.response.status==401){
     //清空无效登录信息
     store.commit('user/setUser',{})

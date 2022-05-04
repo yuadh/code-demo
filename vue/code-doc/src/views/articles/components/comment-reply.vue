@@ -11,7 +11,9 @@
     <!-- 评论回复主体 -->
     <div class="reply-wrap">
       <commentItem :comment="comment"/>
+
       <van-cell title="全部回复"/>
+      
       <commentList
        :list="datList"
        :artId="comment.com_id"
