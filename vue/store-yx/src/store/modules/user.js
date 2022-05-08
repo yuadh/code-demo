@@ -1,19 +1,19 @@
 export default {
   namespaced: true,
-  state() {
+  state () {
     return {
       profile: {
-        id: "",
-        avatar: "",
-        nikename: "",
-        account: "",
-        mobile: "",
-        token: ""
+        id: '',
+        avatar: '',
+        nikename: '',
+        account: '',
+        mobile: '',
+        token: ''
       }
     }
   },
   mutations: {
-    setUser(state, payload) {
+    setUser (state, payload) {
       state.profile = payload
     }
   }

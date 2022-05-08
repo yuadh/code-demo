@@ -10,35 +10,87 @@ typedef struct StackLink{
     int topNum;
 }StackLink;
 
-//é¡ºåºå­˜å‚¨æ ˆçš„åˆå§‹åŒ–
+//Ë³Ðò´æ´¢Õ»µÄ³õÊ¼»¯
 void InitStack(StackLink *SL){
     SL->topNum = -1;
-    return ;//åˆå§‹åŒ–ä¸€ä¸ªæ²¡æœ‰æ ˆåº•çš„æ ˆé˜Ÿåˆ—
+    return ;//³õÊ¼»¯Ò»¸öÃ»ÓÐÕ»µ×µÄÕ»¶ÓÁÐ
 }
-// è¿›æ ˆ
+// ½øÕ»
 bool StackPush(StackLink *SL,int dat){
-    if(SL->topNum==MaxSize-1){//æ ˆæ»¡
+    if(SL->topNum==MaxSize-1){//Õ»Âú
         return false;
     }
     SL->NodeData[++SL->topNum]=dat;
     return true;
 }
-// å‡ºæ ˆ
+// ³öÕ»
 bool StackPop(StackLink *SL,int *x){
-    if(SL->topNum==-1){//æ ˆç©º
+    if(SL->topNum==-1){//Õ»¿Õ
         return false;
     }
     *x = SL->NodeData[SL->topNum--];
     return true;
 }
 
-int main(){
-    StackLink  sl;int x;
+void showStack(StackLink sl){
+    if(sl.topNum==-1){//Õ»¿ÕÇé¿ö
+        printf("Õ»¿Õ");
+        return;
+    }
+    for(int i=sl.topNum;i>=0;i--){
+        printf("%c\n",sl.NodeData[i]);
+    }
+}
+
+void work03(){
+    StackLink sl;
     InitStack(&sl);
-    StackPush(&sl,1);
-    StackPush(&sl,2);
-    StackPush(&sl,3);
-    StackPush(&sl,4);
-    StackPop(&sl,&x);
-    printf("%d",x);
+    int n;
+    scanf("%d",&n);
+    while(n!=-1){
+        StackPush(&sl,n);
+        scanf("%d",&n);
+    }
+    // StackPop(&sl,&n);
+    showStack(sl);
+}
+bool work05(char *str){
+    StackLink sl;
+    InitStack(&sl);
+    int i=0,n;
+    // ¸ù¾ÝÇé¿ö¶ÔÊý×éÊý¾Ý½øÐÐÈëÕ»ºÍ³öÕ»
+    while(str[i]){
+        if(str[i]=='I'){
+            StackPush(&sl,str[i]);
+        }else if(str[i]=='O'){
+            StackPop(&sl,&n);
+        }else{
+            printf("Êý×éµ±Ç°Êý¾ÝÓÐÎó\n");
+            return false;
+        }
+        i++;
+    }
+    showStack(sl);
+    if(sl.topNum==-1){//Õ»¿ÕÇé¿ö
+        printf("Õ»¿Õ");
+        return true;
+    }
+    return false;
+}
+//µÝ¹é
+int Ack(int m,int n){
+	if (m==0) return n+1;
+	else if(m!=0&&n==0) return Ack(m-1,1);
+	else return Ack(m-1,Ack(m,n-1));
+}
+int main(){
+    // work03();
+    // char s[]="IIIOOIOO";
+    // if(work05(s)){
+    //     printf("\nºÏ·¨ÐòÁÐ\n");
+    // }else{
+    //     printf("\n·Ç·¨ÐòÁÐ\n");
+    // }
+    int a = Ack(2,1);
+    printf("%d",a);
 }

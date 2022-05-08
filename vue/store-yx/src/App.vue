@@ -1,16 +1,23 @@
 <template>
+  <yxTopNav/>
+  <yxHeader/>
   <div class="main">
+    <div class="test hoverShadow">test</div>
     <div class="container">
-      <yxCarousel/>
+      <yxCarousel class="hoverShadow()"/>
     </div>
   </div>
 </template>
 
 <script>
-import  yxCarousel from '@/components/yxCarousel.vue'
+import yxTopNav from "@/components/yxTopNav.vue"
+import yxCarousel from '@/components/yxCarousel.vue'
+import yxHeader from './components/yxHeader.vue'
 export default {
   components: {
-    yxCarousel
+    yxCarousel,
+    yxTopNav,
+    yxHeader
   }
 }
 </script>
@@ -22,10 +29,17 @@ export default {
   display: flex;
   align-items: center;
   justify-content: center;
-  background-color: aqua;
+  background-color: @priceColor;
   .container{
-    width: 1240px;
-    height: 500px;
+    .hoverShadow();
+    width: 500px;
+    height: 600px;
+  }
+  .test{
+    .hoverShadow();
+    width: 100px;
+    height: 100px;
+    background-color: @warnColor;
   }
 }
 </style>

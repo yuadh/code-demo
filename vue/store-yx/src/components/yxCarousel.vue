@@ -16,52 +16,52 @@
       <span @click="index=i" v-for="(obj,i) in 5" :key=i :class="{active:index===i}"></span>
     </div>
   </div>
-  
+
 </template>
 
 <script>
-import {ref} from 'vue'
-import "@/assets/styles/common.less"
+import { ref } from 'vue'
+import '@/assets/styles/common.less'
 export default {
-  setup(){
+  setup () {
     const index = ref(0)
-    const duration = ref(3000) //轮播时长
-    const autoPlay = ref(true) //是否自动轮播
-    let timer = null //定时器
-    const toggle = (step)=>{
-      const newIndex = index.value+step
-      if(newIndex<0){
+    const duration = ref(3000) // 轮播时长
+    const autoPlay = ref(true) // 是否自动轮播
+    let timer = null // 定时器
+    const toggle = (step) => {
+      const newIndex = index.value + step
+      if (newIndex < 0) {
         index.value = 4
-        return 
+        return
       }
-      if(newIndex>4){
+      if (newIndex > 4) {
         index.value = 0
-        return 
+        return
       }
       index.value = newIndex
     }
-    const autoPlayFn = ()=>{
+    const autoPlayFn = () => {
       clearInterval(timer)
-      timer = setInterval(()=>{
+      timer = setInterval(() => {
         index.value++
-        if(index.value>=5){
+        if (index.value >= 5) {
           index.value = 0
         }
-      },duration.value)
+      }, duration.value)
     }
-    //开始轮播
-    const start = ()=>{
-      if(autoPlay.value){
+    // 开始轮播
+    const start = () => {
+      if (autoPlay.value) {
         autoPlayFn()
       }
     }
-    //停止轮播
-    const stop = ()=>{
-      if(timer){
-        clearInterval(timer)//如果有定时器就停止定时
+    // 停止轮播
+    const stop = () => {
+      if (timer) {
+        clearInterval(timer)// 如果有定时器就停止定时
       }
     }
-    return {index,toggle,stop,start}
+    return { index, toggle, stop, start }
   }
 }
 </script>
@@ -119,7 +119,7 @@ export default {
         }
         &.active{
           background: #fff;
-        }       
+        }
       }
     }
     &-btn{

@@ -3,10 +3,10 @@
 </template>
 
 <script>
-import {findBanner} from '@/api/home'
+import { findBanner } from '@/api/home'
 export default {
-  setup(){
-    //测试接口是否可用
+  setup () {
+    // 测试接口是否可用
     findBanner().then(data => {
       console.log(data)
     })

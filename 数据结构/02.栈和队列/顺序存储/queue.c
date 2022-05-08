@@ -1,45 +1,88 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include <string.h>
 #define MaxSize 50
 #define bool int
 #define true 1
 #define false 0
-// æ•°æ®ç»“æž„é‡‡ç”¨å¾ªçŽ¯é˜Ÿåˆ—é˜²æ­¢å‡æº¢å‡ºé—®é¢˜
+// tag=0 Ê±Õ»Îª¿ÕÕ»£¬ tag=1 Ê±Õ»ÎªÂúÕ»
+int tag=0;
+// Êý¾Ý½á¹¹²ÉÓÃÑ­»·¶ÓÁÐ·ÀÖ¹¼ÙÒç³öÎÊÌâ
 typedef struct QueueLink{
     int NodeData[MaxSize];
     int front,rear;
 }QueueLink;
+void checkStatus(QueueLink *QL);
 void InitQueueLink(QueueLink *QL){
     QL->front = QL->rear =0;
-
 }
-// å…¥é˜Ÿ
+// Èë¶Ó
 void EnQueueLink(QueueLink *QL,int dat){
-    if((QL->rear+1)%MaxSize==QL->front){
-        return ;//æ ˆæ»¡æƒ…å†µ
+    checkStatus(QL);
+    if(tag==1){//Õ»ÂúÇé¿ö
+        return;
     }
     QL->NodeData[QL->rear] = dat;
     QL->rear = (QL->rear+1)%MaxSize;
+    tag = -1;//ÄÜÕý³£²Ù×÷ Çå³ý±êÖ¾×´Ì¬
     return ;
 }
 void DeQueueLink(QueueLink *QL,int *dat){
-    if(QL->front==QL->rear){
-        return; //æ ˆç©ºæƒ…å†µ
+    checkStatus(QL);
+    if(tag==0){//Õ»¿ÕÇé¿ö
+        return;
     }
     *dat = QL->NodeData[QL->front];
     QL->front = (QL->front+1)%MaxSize;
+    tag = -1;//ÄÜÕý³£²Ù×÷ Çå³ý±êÖ¾×´Ì¬
     return ;
 }
-
-int main(){
+void checkStatus(QueueLink *QL){
+    if((QL->rear+1)%MaxSize==QL->front){
+        printf("¶ÓÁÐÂú\n");
+        tag=1;
+        return;//Õ»ÂúÇé¿ö
+    }
+    if(QL->front==QL->rear){
+        printf("¶ÓÁÐ¿Õ\n");
+        tag=0;
+        return; //Õ»¿ÕÇé¿ö
+    }
+}
+void showQueue(QueueLink ql){
+    //´òÓ¡Õ»
+    printf("¶ÓÁÐµÄ´òÓ¡:\n");
+    for(int i=ql.rear-1;i>=ql.front;i--){
+        printf("%d\n",ql.NodeData[i]);
+    }
+}
+void work03(){
     QueueLink ql;
     InitQueueLink(&ql);
-    EnQueueLink(&ql,1);
-    EnQueueLink(&ql,2);
-    EnQueueLink(&ql,3);
-    int t;
-    DeQueueLink(&ql,&t);
+    int n;
+    scanf("%d",&n);
+    while(n!=-1){
+        EnQueueLink(&ql,n);
+        scanf("%d",&n);  
+    }
+    DeQueueLink(&ql,&n);
+    showQueue(ql);
+}
+int work05(int *a){
+    int i=0,L;
+    QueueLink ql;
+    InitQueueLink(&ql);
+    L = sizeof(a)/sizeof(int);
+    while(i<L){
+        EnQueueLink(&ql,a[i++]);
+    }
     for(int i=ql.front;i<ql.rear;i++){
         printf("%d\n",ql.NodeData[i]);
     }
+}
+
+int main(){
+    work03();
+    // int a[]={1,2,3,4,5};
+    // work05(a);
 }       
