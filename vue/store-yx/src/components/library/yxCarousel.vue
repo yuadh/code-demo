@@ -2,10 +2,13 @@
   <div class="yxCarousel" @mouseenter="stop()" @mouseleave="start()">
     <!-- 轮播图组件封装 -->
     <ul class="carouselBody">
-      <li v-for="(obj,i) in 5" :key="i" class="carouselItem" :class="{fade:index===i}">
-        <RouterLink to='/'>
-          <img :src="require(`../assets/demo/${obj}.png`)">
+      <li v-for="(item,i) in sliders" :key="i" class="carouselItem" :class="{fade:index===i}">
+        <RouterLink v-if="item.imgUrl" to='/'>
+          <img :src="item.imgUrl">
         </RouterLink>
+        <div v-else>
+          <div style="background-color:red;width:100%;height:100%;"></div>
+        </div>
       </li>
     </ul>
     <!-- 按键 -->
@@ -13,28 +16,41 @@
     <a @click="toggle(1)" href="javascript:;" class="carousel-btn next"><i class="iconfont icon-angle-right"></i></a>
     <!-- 指示器 -->
     <div class="carousel-indicator">
-      <span @click="index=i" v-for="(obj,i) in 5" :key=i :class="{active:index===i}"></span>
+      <span @click="index=i" v-for="(obj,i) in sliders" :key="i" :class="{active:index===i}"></span>
     </div>
   </div>
 
 </template>
 
 <script>
-import { ref } from 'vue'
-import '@/assets/styles/common.less'
+import { onUnmounted, ref, watch } from 'vue'
+console.log("导入样式测试2222")
 export default {
-  setup () {
+  props:{
+    sliders:{
+      type:Array,
+      default:()=>[]
+    },
+    autoPlay:{
+      type:Boolean,
+      default:false
+    },
+    duration:{
+      type:Number,
+      default:3000
+    }
+  },
+  setup (props) {
+    console.log(props.autoPlay)
     const index = ref(0)
-    const duration = ref(3000) // 轮播时长
-    const autoPlay = ref(true) // 是否自动轮播
     let timer = null // 定时器
     const toggle = (step) => {
       const newIndex = index.value + step
       if (newIndex < 0) {
-        index.value = 4
+        index.value = props.sliders.length-1
         return
       }
-      if (newIndex > 4) {
+      if (newIndex > (props.sliders.length-1)) {
         index.value = 0
         return
       }
@@ -44,14 +60,20 @@ export default {
       clearInterval(timer)
       timer = setInterval(() => {
         index.value++
-        if (index.value >= 5) {
+        if (index.value >= props.sliders.length) {
           index.value = 0
         }
-      }, duration.value)
+      },props.duration)
     }
+    // 监听是否有数据后开始轮播
+    watch(()=>props.sliders,(newVal)=>{
+      if(newVal.length&&props.autoPlay){
+        autoPlayFn()
+      }
+    },{immediate:true})
     // 开始轮播
     const start = () => {
-      if (autoPlay.value) {
+      if (props.sliders.length&&props.autoPlay) {
         autoPlayFn()
       }
     }
@@ -61,6 +83,9 @@ export default {
         clearInterval(timer)// 如果有定时器就停止定时
       }
     }
+    onUnmounted(()=>{//组件卸载清楚定时器
+      clearTimeout(timer)
+    })
     return { index, toggle, stop, start }
   }
 }
