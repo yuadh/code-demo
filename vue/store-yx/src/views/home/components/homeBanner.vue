@@ -31,7 +31,7 @@ export default {
     position: absolute;
     left: 0;
     top: 0;
-    z-index: 98;
+    // z-index: 98;
   }
   .yxCarousel{
     :deep(.carousel-btn.prev){
