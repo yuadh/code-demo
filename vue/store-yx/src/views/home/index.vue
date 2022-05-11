@@ -8,6 +8,7 @@
   </div>
   <homeNew/>
   <homeHot/>
+  <homeProduct/>
   <div style="height:1000px;background-color:pink;"></div>
 </template>
 
@@ -16,11 +17,13 @@ import { findBanner } from '@/api/home'
 import homeBanner from './components/homeBanner.vue'
 import homeHot from './components/homeHot.vue'
 import homeNew from './components/homeNew.vue'
+import homeProduct from './components/homeProduct.vue'
 export default {
   components:{
     homeBanner,
     homeHot,
-    homeNew
+    homeNew,
+    homeProduct
   },
   setup () {
     // 测试接口是否可用
