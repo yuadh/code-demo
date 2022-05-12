@@ -1,11 +1,11 @@
 <template>
   <div class="goods-item">
     <RouterLink class="image" to="\">
-      <img src="/" alt="">
+      <img :src="item.picture" alt="">
     </RouterLink>
-    <p class="name ellipsis-2">XXXXXXXX</p>
-    <p class="desc ellipsis">XXXX</p>
-    <p class="price">444</p>
+    <p class="name ellipsis-2">{{item.name}}</p>
+    <p class="desc ellipsis">{{item.desc}}</p>
+    <p class="price">{{item.price}}</p>
     <div class="extra">
       <RouterLink to="\">
         <span>找相似</span>
@@ -17,7 +17,12 @@
 
 <script>
 export default {
-
+  props: {
+    item:{
+      type:Object,
+      required:true
+    }
+  }
 }
 </script>
 
@@ -81,7 +86,7 @@ export default {
       }
     }
     &:hover{
-      border:@xtxColor;
+      border-color:@xtxColor;
       .extra{
         transform: none;
       }
