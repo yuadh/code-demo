@@ -18,3 +18,15 @@ export const getHotApi = () => {
 export const getGoods = () => {
     return request('/home/goods', 'get')
 }
+
+export const getHotBrand = ()=>{
+    return request('/home/brand','get')
+}
+
+export const getSpecialAPI = ()=>{
+    return request('/home/special','get')
+}
+
+export const findBrand = (limit=6)=>{
+    return request('/home/brand','get',{limit})
+}

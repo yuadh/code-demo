@@ -2,16 +2,19 @@
   <div class="home-new">
     <homePanel title="新鲜好物" subTitle="新鲜出炉 品质靠谱">
       <template #right><yx-more/></template>
-      <div style="position:relative;height:426px;">
-        <ul v-if="goods.length" class="goods-list">
-          <li v-for="item in goods" :key="item.id">
-            <RouterLink to="/">
-              <img :src="item.picture" alt="">
-              <p class="name ellipsis">{{item.name}}</p>
-              <p class="price">{{item.price}}</p>
-            </RouterLink>
-          </li>
-        </ul>
+      <div ref="target" style="position:relative;height:426px;">
+        <Transition name="fade">
+          <ul v-if="goods.length" class="goods-list">
+            <li v-for="item in goods" :key="item.id">
+              <RouterLink to="/">
+                <img v-lazy="item.picture" alt="">
+                <p class="name ellipsis">{{item.name}}</p>
+                <p class="price">{{item.price}}</p>
+              </RouterLink>
+            </li>
+          </ul>
+          <homeSkeleton v-else bg="#f0f9f4"/>
+        </Transition>
       </div>
     </homePanel>
   </div>
@@ -22,21 +25,23 @@ import YxMore from '@/components/library/yxMore.vue'
 import homePanel from './homePanel.vue'
 import {getNewApi} from "@/api/home"
 import { ref } from '@vue/reactivity'
+import homeSkeleton from "./homeSkeleton"
+import {useDataLazy} from "@/hooks/index"
 export default {
   components:{
     homePanel,
-    YxMore
+    YxMore,
+    homeSkeleton
   },
   setup(){
     const goods = ref([])
-    getNewApi().then(data=>{
-      goods.value = data.result
-    }).catch(err=>{
-      console.log(err)
-    })
-    console.log("-----------====")
-    console.log(goods)
-    return {goods}
+    // getNewApi().then(data=>{
+    //   goods.value = data.result
+    // }).catch(err=>{
+    //   console.log(err)
+    // })
+    const {result,target} = useDataLazy(getNewApi)
+    return {goods:result,target}
   }
 }
 </script>

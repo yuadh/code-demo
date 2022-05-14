@@ -13,6 +13,14 @@ export default {
   mutations: {
     setList(state,payload){
       state.list = payload
+    },
+    show(state,id){
+      const currCategory = state.list.find(item=>item.id===id)
+      currCategory.open = true
+    },
+    hide(state,id){
+      const currCategory = state.list.find(item=>item.id===id)
+      currCategory.open = false
     }
   },
   actions: {

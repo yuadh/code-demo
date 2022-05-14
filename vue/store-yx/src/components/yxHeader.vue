@@ -20,8 +20,8 @@
 <script>
 import { computed } from '@vue/runtime-core'
 import { useStore } from 'vuex'
-import yxHeaderNav from './library/yxHeaderNav.vue'
-import yxHeaderCar from './library/yxHeaderCar.vue'
+import yxHeaderNav from './yxHeaderNav.vue'
+import yxHeaderCar from './yxHeaderCar.vue'
 export default {
   components:{
     yxHeaderNav,

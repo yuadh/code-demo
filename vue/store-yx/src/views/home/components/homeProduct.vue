@@ -11,7 +11,7 @@
       </template>
       <div class="box">
         <RouterLink class="cover" to="/">
-          <img :src="item.picture">
+          <img v-lazy="item.picture">
           <strong class="label">
             <span>{{item.name}}馆</span>
             <span class="ellipsi">{{item.saleInfo}}</span>
