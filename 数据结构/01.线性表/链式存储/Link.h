@@ -4,6 +4,13 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <malloc.h>
+
+#define false 0
+#define true 1
+#define Status  int
+#define ElemType int
+
+
 typedef struct ListNode//定义链表节点
 {
     int nodeData;//数据??
@@ -147,6 +154,25 @@ ListNode ListRmNode(LinkList L,int n){
     free(delNode);
     return *delNode;
 }
+Status ListDelete_L(LinkList L,int i,ElemType* e){ 
+    LinkList p = L; int f = 0;
+    while(p&&f<(i-1)){//将工作节点移动到待删除节点的前一个节点
+       p = p->nodeNext;
+       f++;
+    }
+    if(!p->nodeData||(f>i-1)){
+       printf("null element");
+       return false;
+    }
+    // 如果元素存在执行删除逻辑-
+    //将待删除的前一个元素的指针域指向删除元素的指针域指向的元素,然后释放元素
+    LinkList delNode = p->nodeNext;
+    *e = delNode->nodeData;//指向待删除元素的数据域
+    p->nodeNext = delNode->nodeNext;
+    free(delNode);
+    return true; 
+}
+
 LinkList ListRmNodeUseNode(LinkList L){
     LinkList newList;
     newList = L->nodeNext;
