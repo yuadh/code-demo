@@ -82,16 +82,10 @@ export default class todoMain extends Component {
     this.props.todoTogState(id)
   }
   showEdit = ({ id, content }) => {
-    this.setState(
-      {
-        currentId: id,
-        curContent: content,
-      },
-      () => {
-        console.log(id + '--' + this.inputRef.current)
-        this.inputRef.current.focus()
-      }
-    )
+    this.setState({
+      currentId: id,
+      curContent: content,
+    })
   }
   changeCont = (e) => {
     if (e.keyCode === 27) {
@@ -110,5 +104,9 @@ export default class todoMain extends Component {
   }
   selectAll = (e) => {
     this.props.checkAll(e.target.checked)
+  }
+  componentDidUpdate() {
+    console.log(this.inputRef)
+    this.inputRef.current.focus()
   }
 }
