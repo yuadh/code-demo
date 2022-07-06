@@ -10,42 +10,25 @@ const TodoFooter = () => {
     dispatch(changeStage(stage))
     console.log(dat)
   }
+  const arr = ['all', 'active', 'completed']
   return (
     <footer className="footer">
       <span className="todo-count">
         <strong>{count}</strong> item left
       </span>
       <ul className="filters">
-        <li
-          onClick={() => {
-            change('all')
-          }}
-        >
-          <a className={dat === 'all' ? 'selected' : ''} href="#/">
-            All
-          </a>
-        </li>
-        <li
-          onClick={() => {
-            change('active')
-          }}
-        >
-          <a className={dat === 'active' ? 'selected' : ''} href="#/active">
-            Active
-          </a>
-        </li>
-        <li
-          onClick={() => {
-            change('completed')
-          }}
-        >
-          <a
-            className={dat === 'completed' ? 'selected' : ''}
-            href="#/completed"
+        {arr.map((item, index) => (
+          <li
+            key={index}
+            onClick={() => {
+              change(item)
+            }}
           >
-            Completed
-          </a>
-        </li>
+            <a className={dat === item ? 'selected' : ''} href="/#">
+              {item}
+            </a>
+          </li>
+        ))}
       </ul>
       <button className="clear-completed">Clear completed</button>
     </footer>

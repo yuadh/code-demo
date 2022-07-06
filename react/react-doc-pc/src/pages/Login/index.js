@@ -3,6 +3,7 @@ import { Card, Button, Checkbox, Form, Input, message } from 'antd'
 import logo from 'assets/images/logo.png'
 import './index.less'
 import { userLoginApi } from 'api/user.js'
+import { setToken } from 'utils/storage'
 export default class index extends Component {
   state = {
     loading: false,
@@ -97,6 +98,7 @@ export default class index extends Component {
     try {
       const res = await userLoginApi(mobile, code)
       console.log(res)
+      setToken(res.data.token)
       message.success('登录成功', 1, () => {
         this.props.history.push('/home')
       })

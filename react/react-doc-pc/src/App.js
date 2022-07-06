@@ -15,7 +15,7 @@ function App() {
           <Redirect exact path="/" to="/home"></Redirect>
           <Route path="/home" component={Home}></Route>
           <Route path="/login" component={Login}></Route>
-          <Route component={<div>404</div>}></Route>
+          <Route component={123}></Route>
         </Switch>
       </div>
     </Router>

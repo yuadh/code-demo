@@ -25,3 +25,34 @@ export const addTodo = (name) => {
     })
   }
 }
+export const delTodo = (id) => {
+  return async (dispatch) => {
+    await axios.delete('http://localhost:8888/todos/' + id)
+    dispatch({
+      type: 'DEL_TODO',
+      payload: id,
+    })
+  }
+}
+export const togTodo = (id, done) => {
+  return async (dispatch) => {
+    await axios.patch('http://localhost:8888/todos/' + id, {
+      done,
+    })
+    dispatch({
+      type: 'TOG_TODO',
+      payload: { id, done },
+    })
+  }
+}
+export const chTodoName = (id, name) => {
+  return async (dispatch) => {
+    await axios.patch('http://localhost:8888/todos/' + id, {
+      name,
+    })
+    dispatch({
+      type: 'CHNA_TODO',
+      payload: { id, name },
+    })
+  }
+}

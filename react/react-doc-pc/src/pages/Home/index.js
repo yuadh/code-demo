@@ -1,88 +1,81 @@
 import React, { Component } from 'react'
-import { Breadcrumb, Layout, Menu } from 'antd'
+import { Layout, Menu, Popconfirm } from 'antd'
+import { Link, Route, Switch } from 'react-router-dom'
+import ArticleList from 'pages/ArticleList'
+import ArticlePublish from 'pages/ArticlePublish'
+import Main from 'pages/Main'
+import { removeToken } from 'utils/storage'
 import {
-  LaptopOutlined,
-  NotificationOutlined,
-  UserOutlined,
+  LogoutOutlined,
+  WindowsFilled,
+  SnippetsFilled,
+  HighlightFilled,
 } from '@ant-design/icons'
 import style from './index.module.less'
 const { Header, Content, Sider } = Layout
-const items1 = ['1', '2', '3'].map((key) => ({
-  key,
-  label: `nav ${key}`,
-}))
-const items2 = [UserOutlined, LaptopOutlined, NotificationOutlined].map(
-  (icon, index) => {
-    const key = String(index + 1)
-    return {
-      key: `sub${key}`,
-      icon: React.createElement(icon),
-      label: `subnav ${key}`,
-      children: new Array(4).fill(null).map((_, j) => {
-        const subKey = index * 4 + j + 1
-        return {
-          key: subKey,
-          label: `option${subKey}`,
-        }
-      }),
-    }
-  }
-)
-export default class index extends Component {
+
+export default class Home extends Component {
   render() {
     return (
       <div className={style.home}>
         <Layout>
           <Header className="header">
             <div className="logo" />
-            <Menu
-              theme="dark"
-              mode="horizontal"
-              defaultSelectedKeys={['2']}
-              items={items1}
-            />
+            <div className="userInfo">
+              <span className="userName">黑马先锋</span>
+              <span className="userLogout">
+                <Popconfirm
+                  title="是否确认退出"
+                  okText="确定"
+                  cancelText="取消"
+                  placement="bottomLeft"
+                  onConfirm={this.logout}
+                >
+                  <LogoutOutlined /> 退出
+                </Popconfirm>
+              </span>
+            </div>
           </Header>
           <Layout>
-            <Sider width={200} className="site-layout-background">
+            <Sider width={200}>
               <Menu
                 mode="inline"
+                theme="dark"
+                // defaultOpenKeys={['sub1']}
                 defaultSelectedKeys={['1']}
-                defaultOpenKeys={['sub1']}
-                style={{
-                  height: '100%',
-                  borderRight: 0,
-                }}
-                items={items2}
-              />
+                style={{ height: '100%', borderRight: 0 }}
+              >
+                <Menu.Item icon={<WindowsFilled />} key="1">
+                  <Link to="/home">数据概览</Link>
+                </Menu.Item>
+                <Menu.Item icon={<SnippetsFilled />} key="2">
+                  <Link to="/home/article">内容管理</Link>
+                </Menu.Item>
+                <Menu.Item icon={<HighlightFilled />} key="3">
+                  <Link to="/home/publish">发布文章</Link>
+                </Menu.Item>
+              </Menu>
             </Sider>
-            <Layout
-              style={{
-                padding: '0 24px 24px',
-              }}
-            >
-              <Breadcrumb
-                style={{
-                  margin: '16px 0',
-                }}
-              >
-                <Breadcrumb.Item>Home</Breadcrumb.Item>
-                <Breadcrumb.Item>List</Breadcrumb.Item>
-                <Breadcrumb.Item>App</Breadcrumb.Item>
-              </Breadcrumb>
-              <Content
-                className="site-layout-background"
-                style={{
-                  padding: 24,
-                  margin: 0,
-                  minHeight: 280,
-                }}
-              >
-                Content
+            <Layout style={{ padding: '24px' }}>
+              <Content className="site-layout-background">
+                <Switch>
+                  <Route exact path="/home" component={Main}></Route>
+                  <Route path="/home/article" component={ArticleList}></Route>
+                  <Route
+                    path="/home/publish"
+                    component={ArticlePublish}
+                  ></Route>
+                </Switch>
               </Content>
             </Layout>
           </Layout>
         </Layout>
       </div>
     )
+  }
+  logout = () => {
+    console.log('退出测试')
+    removeToken()
+    this.props.history.push('/login')
   }
 }
