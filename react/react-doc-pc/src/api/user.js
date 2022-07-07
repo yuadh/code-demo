@@ -6,3 +6,7 @@ export const userLoginApi = (mobile, code) => {
     code,
   })
 }
+
+export const getUserInfo = () => {
+  return request('/user/profile', 'get')
+}

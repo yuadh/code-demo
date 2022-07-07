@@ -17,7 +17,7 @@ export default class index extends Component {
             size="large"
             onFinish={this.onFinish}
             initialValues={{
-              mobile: '15507081172',
+              mobile: '13911111111',
               code: '246810',
               agree: true,
             }}
@@ -100,6 +100,8 @@ export default class index extends Component {
       console.log(res)
       setToken(res.data.token)
       message.success('登录成功', 1, () => {
+        const { state } = this.props.location
+        console.log('路由接收', state)
         this.props.history.push('/home')
       })
     } catch (err) {

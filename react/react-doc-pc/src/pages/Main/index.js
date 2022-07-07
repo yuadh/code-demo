@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
-
+import style from './index.module.less'
 export default class Main extends Component {
   render() {
-    return <div>主页面内容显示</div>
+    return <div className={style.home}></div>
   }
 }
