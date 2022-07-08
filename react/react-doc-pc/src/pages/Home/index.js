@@ -14,7 +14,6 @@ import {
 } from '@ant-design/icons'
 import style from './index.module.less'
 const { Header, Content, Sider } = Layout
-
 export default class Home extends Component {
   state = {
     profile: {},
@@ -60,7 +59,7 @@ export default class Home extends Component {
                 </Menu.Item>
               </Menu>
             </Sider>
-            <Layout style={{ padding: '24px' }}>
+            <Layout className="layoutContent" style={{ padding: '20px' }}>
               <Content className="site-layout-background">
                 <Switch>
                   <Route exact path="/home" component={Main}></Route>
