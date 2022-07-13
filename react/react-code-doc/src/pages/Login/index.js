@@ -8,7 +8,9 @@ import classNames from 'classnames'
 import { loginAPI, sendCodeAPI } from '@/store/actions/login'
 import { useDispatch } from 'react-redux'
 import { Toast } from 'antd-mobile'
+import { useHistory } from 'react-router-dom'
 export default function Login() {
+  const history = useHistory()
   const [times, setTimes] = useState(0)
   const dispatch = useDispatch()
   const onExtraClick = async () => {
@@ -49,8 +51,8 @@ export default function Login() {
   // }
   const formik = useFormik({
     initialValues: {
-      mobile: '15507081172',
-      code: '',
+      mobile: '13911111111',
+      code: '246810',
     },
     // validate,
     validationSchema: Yup.object({
@@ -61,13 +63,14 @@ export default function Login() {
         .required('验证码不能为空')
         .matches(/^\d{6}$/, '验证码格式错误'),
     }),
-    onSubmit: (values) => {
-      dispatch(loginAPI(values))
+    onSubmit: async (values) => {
+      await dispatch(loginAPI(values))
       Toast.show({
         icon: 'success',
         content: '登录成功',
         duration: 1000,
       })
+      history.push('/home')
     },
   })
   const {
