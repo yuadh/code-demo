@@ -1,5 +1,6 @@
 const initValue = {
   user: {},
+  profile: {},
 }
 
 export default function reducer(state = initValue, action) {
@@ -10,5 +11,13 @@ export default function reducer(state = initValue, action) {
       user: payload,
     }
   }
+  if (type === 'profile/profile') {
+    console.log('ppppppppp')
+    return {
+      ...state,
+      profile: payload,
+    }
+  }
+
   return state
 }

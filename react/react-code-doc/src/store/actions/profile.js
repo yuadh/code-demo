@@ -13,3 +13,16 @@ export const setUser = (payload) => {
     payload,
   }
 }
+export const setProfile = (payload) => {
+  return {
+    type: 'profile/profile',
+    payload,
+  }
+}
+export const getProfileDetailsAPI = () => {
+  return async (dispatch) => {
+    const res = await request('/user/profile', 'get')
+    console.log(res)
+    dispatch(setProfile(res.data))
+  }
+}

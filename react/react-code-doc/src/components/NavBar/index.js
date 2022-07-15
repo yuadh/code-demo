@@ -3,10 +3,17 @@ import styles from './index.module.scss'
 import Icon from '../Icon'
 import { useHistory } from 'react-router-dom'
 
-function NavBar({ children, extra }) {
+function NavBar({ children, extra, onLeftClick }) {
   const history = useHistory()
   const back = () => {
-    history.go(-1)
+    if (onLeftClick) {
+      onLeftClick()
+    } else {
+      history.go(-1)
+    }
+  }
+  const rightHandle = () => {
+    console.log('提交函数')
   }
   return (
     <div className={styles.root}>
@@ -14,7 +21,9 @@ function NavBar({ children, extra }) {
         <Icon type="iconfanhui" />
       </div>
       <div className="title">{children}</div>
-      <div className="right">{extra}</div>
+      <div className="right" onClick={rightHandle}>
+        {extra}
+      </div>
     </div>
   )
 }
