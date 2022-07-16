@@ -26,3 +26,19 @@ export const getProfileDetailsAPI = () => {
     dispatch(setProfile(res.data))
   }
 }
+
+export const updateProfile = (date) => {
+  return async (dispatch) => {
+    const res = await request('/user/profile', 'patch', date)
+    console.log(res)
+    dispatch(getProfileDetailsAPI())
+  }
+}
+
+export const updatePhoto = (fd) => {
+  return async (dispatch) => {
+    const res = await request('/user/photo', 'patch', fd)
+    console.log(res)
+    dispatch(getProfileDetailsAPI())
+  }
+}
