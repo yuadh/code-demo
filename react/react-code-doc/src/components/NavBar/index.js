@@ -2,8 +2,8 @@ import React from 'react'
 import styles from './index.module.scss'
 import Icon from '../Icon'
 import { useHistory } from 'react-router-dom'
-
-function NavBar({ children, extra, onLeftClick }) {
+import classNames from 'classnames'
+function NavBar({ children, extra, onLeftClick, className }) {
   const history = useHistory()
   const back = () => {
     if (onLeftClick) {
@@ -16,7 +16,7 @@ function NavBar({ children, extra, onLeftClick }) {
     console.log('提交函数')
   }
   return (
-    <div className={styles.root}>
+    <div className={classNames(styles.root, className)}>
       <div className="left" onClick={back}>
         <Icon type="iconfanhui" />
       </div>

@@ -21,5 +21,5 @@ export const removeToken = () => {
   return localStorage.removeItem(TOKEN_KEY)
 }
 export const hasToken = () => {
-  return !!getToken()
+  return !!getToken().token
 }

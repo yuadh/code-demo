@@ -8,9 +8,10 @@ import classNames from 'classnames'
 import { loginAPI, sendCodeAPI } from '@/store/actions/login'
 import { useDispatch } from 'react-redux'
 import { Toast } from 'antd-mobile'
-import { useHistory } from 'react-router-dom'
+import { useHistory, useLocation } from 'react-router-dom'
 export default function Login() {
   const history = useHistory()
+  const location = useLocation()
   const [times, setTimes] = useState(0)
   const dispatch = useDispatch()
   const onExtraClick = async () => {
@@ -70,7 +71,11 @@ export default function Login() {
         content: '登录成功',
         duration: 1000,
       })
-      history.push('/home')
+      // push 和 replace 页面跳转的区别： 跳转的页面不会添加记录
+      // 也就是说暂时跳转到登录页且不会留下记录
+      const pathname = location.state ? location.state.from : '/home'
+      console.log(pathname, '989898989898898')
+      history.replace(pathname)
     },
   })
   const {

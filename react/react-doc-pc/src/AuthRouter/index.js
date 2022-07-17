@@ -10,9 +10,10 @@ export default class AuthRouter extends Component {
       <Route
         {...rest}
         render={(data) => {
+          // render 接收到的 date数据是路由提供的router对象
           console.log('是否有token测试', getToken())
           if (hasToken()) {
-            console.log('有token调整home')
+            console.log('有token调整home', data)
             return <Component {...data} />
           }
           return (
